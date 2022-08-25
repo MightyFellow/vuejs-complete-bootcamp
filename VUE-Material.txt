@@ -1,0 +1,6526 @@
+Pre knowledge.
+
+1.HTML 5
+2.CSS 3
+3.Javascript - ES 5 and ES 6
+4.node js fundamentals - npm
+....................................................................................
+				Vue.js
+...................................................................................
+
+What is Vue.js?
+ Vue.js is a javascript framework for building user interfaces.
+
+User interface could be browser,mobile apps,other device based apps.
+
+Vue is more popular for building browser based web applications.
+
+
+What are different types of Web Applications?
+
+Web History
+https://home.web.cern.ch/science/computing/birth-web
+
+Server side web apps
+1.static web apps - 1989 to 1995
+   -HTML
+2.Dynamic content generation web app -1996 to till date
+   -CGI - C/Perl
+   -J2EE - Java,JavaServlets
+   -ASP  - Vbscript,VB
+   -PHP  - Php
+output : HTML
+ etc.....
+3.Web Services - ECOMMERCE(B2 to B2) - 1998 To till date
+  DATA is exchanged between two systems 
+  Common data formats
+   -XML - SOAP web services
+  -Multi format(JSON)- RESTFull Web Services / GraphQL    
+
+Client side web apps
+
+Netscap communication introduced a web browser called "Navigator".
+
+Navigator started failing down once microsoft announced free browser in 1995 as part of win 95 os.
+
+Natscap started entering in to server side market,but again failed.
+
+1995 netscap team started thinking about new technology- how to process "html pages" in the client side after rendering - Client side web apps.
+
+
+Client Side Web Architecture:
+
+Browser-HTML
+
+............................................................................................
+				Internals of HTML Representation
+..........................................................................................
+
+HTML is programming language -  DSL pl /declarative pl.
+
+
+index.html -source code
+
+<html>
+<head></head>
+<title><title>
+<body>
+  <div>
+     <h1>Welcome</h1>
+  </div>
+</body>
+</html>
+-------------------Browser
+loader---LOAD Code into browser
+ |
+   from file: or http:
+ |
+Parser : Parser is special compiler which converts source into lexcial tree(string tree)
+ |
+body
+  div
+     h1
+        Welcome 
+     h1
+  div
+body
+|
+ Complier-Compilation : Convert this into assembly
+|
+body -load xxx
+  div
+     h1
+        Welcome 
+     h1
+  div
+body
+.....................................................................................
+				Runtime  -  Allocate Memory for HTML
+...........................................................................................				
+HTML Execution engine : Request Os ,to allocate memory :Runtime
+
+-LinkedList - c
+
+body -Node
+  div -Node
+     h1 -Node
+        Welcome -Node
+     h1
+  div
+body
+
+-Nodes are connected each other in hierachical structure(tree)
+ 
+Linking the Nodes: Tree (c)
+
+body  -Node
+  |
+  div -Node
+    |
+     h1 -Node
+      |
+        Welcome -Node
+        |
+     h1
+  div
+body
+ |
+ |
+Layout/Paint Engine: will convert nodes into pxs : final output
+...................................................................................
+			Nets cap and HTML Tree
+
+Netscap started a project, to access rendered tree via program, to process(add,update,delete,iterate)
+
+Netscap initally decided to introduce java program to access the tree, but since java was not suitable, netscap decided to create java like programming language - birth of javascript.
+
+Java script language looks the HTML tree as objects - Object oriented HTML, every html element can be thought as object. - body - body object, div element-div object
+
+Once the html has been rendered by the web browser, can we change the html(adding new element,updating existing element content,removing node,listing nodes).
+
+The company called Netscap communcation, the second web browser creator after line mode web browser.
+
+The NetsCap communication introduced the browser called netscap navigator , today firefox.
+
+The netscap introduced a new technology called how to change html after rendering.
+
+In 1996,Netscap communication,Started an RND project called "How to manipulate the tree"
+
+Tree is written in c language,then we need another c program to communicate.
+
+But NETSCAP decided not to use C pl.
+
+Netscap wanted to put java like implementation inside browser to manipulate "Tree".
+
+                        "The birth of Javascript"
+
+How to access nodes from javascript engine?
+  
+One spec was published ,As per that spec
+ "Document Object Model"
+    -How to represent document(elements/nodes) in object oriented way.->DOM
+
+ "Documents can be represented as Objects" : Object oriented Document Programming.
+
+..............................................................................................
+				Birth of Frameworks and libs
+
+
+
+............................................................................................
+How dom works?
+
+index.html           Broser runtime(C program)         Javascript Engine
+<h1>Hello</h1>       h1-Node                           h1- Object
+			Hello-Node			 Hello Object Property
+
+
+
+                Every Html ELEMENT Inside Browser is "C Program"
+
+	        Every Html ELEMENT javascript engine is "Object"
+
+
+javascript developer ---->uses api --->to communicate Object---->js engine---->browser engine.
+
+.............................................................................................
+				DOM Programming
+.............................................................................................
+
+How to implement dom programming?
+
+1.using plain js
+  if we use plain js , it is very difficult to build large applications
+
+2.using frameworks and libs
+
+2000 - The first javascript framework - DOJO
+2002-2005 - JQuery - is the second most powerfull dom lib.
+After 2006 - many js libs and frameworks introduced.. 2008(Angular js) 2013(react)...
+
+Popular DOM frameworks/lib:
+1.React
+2.Angular
+3.Vue.js
+.....................................................................................
+How to build client side web app?
+
+1.Enchancing html(genereated by server) by adding javascript /js lib(jquery)
+2.Web component model.
+ https://developer.mozilla.org/en-US/docs/Web/Web_Components
+3.SPA - Single Page Web Arch
+4.Full Stack/SSR(Server side rendering)
+5.JamStack/SSG(Static Site Generation)
+6.Mobile,desktop,WebGL
+
+
+Based on ,use case we can pickup any one of the methods to build client side web apps, but most popular one is SPA,SSR
+
+Vue js can be used to build any type of client side web apps(spa,ssr,ssg)
+
+implementation
+
+1.Standalone Script
+
+Vue can be used as a standalone script file - no build step required! If you have a backend framework already rendering most of the HTML, or your frontend logic isn't complex enough to justify a build step, this is the easiest way to integrate Vue into your stack. You can think of Vue as a more declarative replacement of jQuery in such cases
+
+
+=>It is old model of writing code.
+=>server always creates html pages , sends html to browser
+=>Client side we need to submit forms
+   we need to validate the forms-js can be used.
+   some animations 
+   if you want to submit forms to the server for processing some data
+   (ajax)
+
+Technologies:
+  jQuery
+  Vue.js
+
+2.Single-Page Application (SPA):
+Some applications require rich interactivity and non-trivial stateful logic on the frontend. The best way to build such applications is to use an architecture where Vue not only controls the entire page, but also handles data updates and navigation without having to reload the page. This type of application is typically referred to as a Single-Page Application (SPA).
+
+SPAs typically require the backend to expose API endpoints - but you can also pair Vue with solutions like Inertia.js to get the SPA benefits while retaining a server-centric development model.
+
+Fullstack / SSR
+
+Pure client-side SPAs are problematic when the app is sensitive to SEO and time-to-content. This is because the browser will receive a largely empty HTML page, and has to wait until the JavaScript is loaded before rendering anything.
+
+Vue provides first-class APIs to "render" a Vue app into HTML strings on the server. This allows the server to send back already-rendered HTML, allowing end users to see the content immediately while the JavaScript is being downloaded. Vue will then "hydrate" the application on the client side to make it interactive. This is called Server-Side Rendering (SSR) and it greatly improves Core Web Vital metrics such as Largest Contentful Paint (LCP).
+
+There are higher-level Vue-based frameworks built on top of this paradigm, such as Nuxt, which allow you to develop a fullstack application using Vue and JavaScript.
+
+
+JAMStack / SSG#
+Server-side rendering can be done ahead of time if the required data is static. This means we can pre-render an entire application into HTML and serve them as static files. This improves site performance and makes deployment a lot simpler since we no longer need to dynamically render pages on each request. Vue can still hydrate such applications to provide rich interactivity on the client. This technique is commonly referred to as Static-Site Generation (SSG), also known as JAMStack.
+
+The Vue team maintains a static-site generator called VitePress, which powers this website you are reading right now! In addition, Nuxt also supports SSG. You can even mix SSR and SSG for different routes in the same Nuxt app.
+
+
+Beyond the Web:
+...............
+
+Although Vue is primarily designed for building web applications, it is by no means limited to just the browser. You can:
+
+Build desktop apps with Electron or Tauri
+Build mobile apps with Ionic Vue
+Build desktop and mobile apps from the same codebase with Quasar
+Use Vue's Custom Renderer API to build custom renderers targeting WebGL or even the terminal!
+
+
+
+App selections:
+
+Whether your app is legacy server side apps built using j2ee or .net,php,rails--->
+ Standalone vue.js
+
+Your app is api centeric(webservices)/microservices
+
+Vue can be used as "SPA"
+
+SPA With SSR for better optimization and SEO ready
+
+SPA and SSR With SSG/JAM Stack - where your app is having static data
+
+
+Getting started with Vue:
+........................
+
+Project Setup:
+..............
+
+1.without build tools
+
+2.with build tools
+
+
+1.without build tools
+
+Steps:
+
+1.create Project
+
+>mkdir vue-legacy
+
+vue-legacy>mkdir src
+
+create index.html outside src dir
+
+index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-legacy</title>
+</head>
+<body>
+    
+</body>
+</html>
+
+in order to integrate vue with existing html
+
+you have to add script which is distributed by vue community via "cdn".
+
+There are two builds:
+1.dev build
+2.prod build
+
+
+Dev Build
+
+<script src="https://unpkg.com/vue@3"></script>
+
+You are running a development build of Vue.
+Make sure to use the production build (*.prod.js) when deploying for production.
+
+
+Prod Build
+ <script src="https://unpkg.com/vue@3.1.1/dist/vue.global.prod.js"></script>
+
+index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue-legacy</title>
+    <!-- This is dev build -->
+    <script src="https://unpkg.com/vue@3"></script>
+    <!-- This is production build -->
+    <!-- <script src="https://unpkg.com/vue@3.1.1/dist/vue.global.prod.js"></script> -->
+</head>
+<body>
+   
+</body>
+
+</html>
+
+
+....................................................................................
+				Vue Application
+....................................................................................
+
+Vue is just javascript framework, offers apis,infrastructure to build "DOM" programming.
+
+DOM Programming:
+1.create element or elements 
+   When we create elements we create tree model-DOM tree
+2.update existing elements content
+3.remove/delete existing element content and element itself
+4.list/walk through tree
+5.we may change style dynamically
+6.we interact with ui and change the ui.
+
+
+Vue is javascript dom programming framework 
+
+There are two ways of programming in UI:
+
+1.imperative programming
+    The way of write program using complex logics, more boiler plate code.
+eg:
+  create element using plain js
+  create element using jQuery
+
+   <div id="root">
+
+    </div>
+    <script>
+        function createElement() {
+            console.log('create Element')
+            const Heading = document.createElement('h1')
+            Heading.innerHTML = 'Hello DOM!'
+            Heading.style.color = 'blue'
+            document.getElementById('root').appendChild(Heading)
+        }
+        createElement();
+    </script>
+
+2.declarative programming
+
+ =>write less code
+ =>Abstract DOM apis with readable constructs 
+ =>introduce declarative templates
+
+Note:
+ Template driven technology introduced in server side computing in 1990's
+ 2006, the first template driven technology was introduced in javascript called
+ mustache.js ( {{}}})
+ Template = static + dynamic  content , where dynamic content is interpolated into code. 
+ eg <h1>Hello {{name}} </h1>
+
+ "Vue is based on declarative , which extends standard HTML with a template syntax"
+				+
+			   java script => binds the state(data)
+
+...................................................................................
+How Vue represents UI?
+
+=>Vue creates UI dynamically(DOM)
+=>Vue Organizes the UI into Smaller and Smaller UI
+=>Vue Breaks complex UI into Smaller UI
+   This model is called Composition
+
+Why Composition?
+=>The UI can be reused any where in the app.
+=>The code maintaince is very easy,because it is independant.
+
+           This arch is called as "component driven arch"
+
+Steps:
+
+1.create Application Object
+
+Pro Vue 3.
+var app = new Vue({   })
+    
+Vue 3:
+
+1.1.Get Vue Instance
+
+We can get Vue Instance 
+
+A.Via Global Vue variable
+B.Via ES 6 modules
+
+....................................................................................
+			A.Via Global Vue variable
+...................................................................................
+
+Vue is Root Instance having lot methods (factory methods)
+
+createApp: (...args) => {…}
+createBlock: ƒ createBlock(type, props, children, patchFlag, dynamicProps)
+createCommentVNode: ƒ createCommentVNode(text = '', // when used as the v-else branch, the comment node must be created as a // block to ensure correct updates. asBlock = false)
+createElementBlock: ƒ createElementBlock(type, props, children, patchFlag, 
+
+etc..
+
+1.2. call method called createApp
+
+Creates an application instance.
+
+function createApp(rootComponent: Component, rootProps?: object): App
+
+const app = createApp()
+
+console.log(app)
+
+Application Object methods:
+............................
+
+component: ƒ component(name, component)
+config: (...)
+directive: ƒ directive(name, directive)
+mixin: ƒ mixin(mixin)
+mount: (containerOrSelector) => {…}
+provide: ƒ provide(key, value)
+unmount: ƒ unmount()
+use: ƒ use(plugin, ...options)
+version: "3.2.36"
+_component: {}
+_container: null
+_context: {app: {…}, config: {…}, mixins: Array(0), components: {…}, directives: {…}, …}
+_instance: null
+_props: null
+_uid: 0
+
+
+       //way -1
+        //     //get Vue Instance
+        //  const vue  = Vue
+        // // console.log(vue)
+        // const app = vue.createApp()
+        // console.log(app)
+        //way -2
+        // const app = Vue.createApp()
+        // console.log(app)
+        //way - 3 : es 6 destructuring syntax
+        const { createApp } = Vue
+        const app = createApp()
+        console.log(app)
+
+.....................................................................................
+				B.Via ES 6 modules
+....................................................................................
+
+Scripts should imported using "importmap" of script tag
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E6 Modules-without Build tools</title>
+    <!-- Poly file for import maps -->
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.5/dist/es-module-shims.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script>
+    <script type="module">
+        import { createApp } from 'vue'
+        const app = createApp()
+        console.log(app)
+    </script>
+
+</body>
+
+</html>
+
+
+Note:
+Import Maps Browser Support
+
+Import maps are supported by default in Chromium-based browsers, so we recommend using Chrome or Edge during the learning process.
+
+If using Firefox, it is only supported in version 102+ and currently needs to be enabled via the dom.importMaps.enabled option in about:config.
+
+If your preferred browser does not support import maps yet, you can polyfill it with es-module-shims.
+
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.5/dist/es-module-shims.js"></script>
+
+Not for production
+
+The import-maps-based setup is meant for learning only - if you intend to use Vue without build tools in production, make sure to check out the Production Deployment Guide.
+..................................................................................
+			    Root Component(Root Element)
+...................................................................................
+
+  In tree structure, root element must be necessary, in vue every element is created by component, so we need  root Component.
+
+In React:
+ function Logo(){
+   
+   return <img src="logo.png"/>
+ 
+}
+In Angular
+
+ @Component({
+   selector:'app-logo'
+   template:`<img src="logo.png"/>
+ }) 
+ export class Logo{
+
+ }
+In Vue:
+ Component is object which is represented as literal object.
+
+const Logo ={
+
+}
+
+What component contains:
+ component information can be categorized into various segments
+
+1.UI/Rendering - HTML,CSS(Markup)
+..................................
+ template
+ render
+ compilerOptions
+
+2.State -(data) - javascript
+ data 
+ props
+ computed
+ methods
+ watch
+ emits
+ expose
+
+3.Life Cycle hooks(methods)
+beforeCreate
+created
+beforeMount
+mounted
+beforeUpdate
+updated
+beforeUnmount
+unmounted
+errorCaptured
+renderTracked
+renderTriggered
+activated
+deactivated
+serverPrefetch
+
+4.Composition
+ provide
+ inject
+ mixins
+ extends
+Misc
+
+name
+inheritAttrs
+components
+directives
+
+Component Instance api
+
+$data
+$props
+$el
+$options
+$parent
+$root
+$slots
+$refs
+$attrs
+$watch()
+$emit()
+$forceUpdate()
+$nextTick()
+.....................................................................................
+				Vue Coding Style
+....................................................................................
+				
+Vue coding can be classified into two category
+
+Options api based style - old vue(Vue 2.x)
+
+Composition api based style - new Vue(Vue 3.x)
+				
+..............................................................................
+
+Template:
+ => It is html along with some special instructions
+ => It is compiled into sequence of java script methods by vue compilers
+ => Every component will have template
+ => root component uses container element as template
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Root Component</title>
+  <!-- Poly file for import maps -->
+  <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.5/dist/es-module-shims.js"></script>
+  <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script>
+</head>
+
+<body>
+  <div id="app">
+
+  </div>
+
+  <script type="module">
+    import { createApp } from 'vue'
+
+    const rootComponent = {
+      template: `
+             <h1>Welcome to Vue App</h1>
+             <p>How are you?</p>
+      `
+    }
+    const app = createApp(rootComponent)
+
+    //rendering root Component on existing dom tree
+    app.mount('#app')
+  </script>
+
+</body>
+
+</html>
+
+...................................................................................
+			  How to write modular code
+
+1.you have to write application component in a separate folders and files
+
+src
+ |
+ components
+    |
+    App.js
+index.html
+
+src/App.js
+export default {
+    template: `
+        <div>
+             <h1>Vue App</h1>
+        </div>
+    `
+}
+index.html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Root Component</title>
+    <!-- Poly file for import maps -->
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.5.5/dist/es-module-shims.js"></script>
+    <script type="importmap">
+        {
+          "imports": {
+            "vue": "https://unpkg.com/vue@3/dist/vue.esm-browser.js"
+          }
+        }
+    </script>
+</head>
+
+<body>
+    <div id="app">
+
+    </div>
+
+    <script type="module">
+        import { createApp } from 'vue'
+        import App from './src/App.js'
+        createApp(App).mount('#app')
+    </script>
+
+</body>
+
+</html>
+			.....................................................................................
+			How to setup vue Apps using Build Tools
+.....................................................................................
+
+Build tools:
+ Which are javascript based tools for create,manage java script apps
+ Build tools are based on npm tool.
+
+Build tools:
+ Webpack
+ rollup
+
+.....................................................................................
+			How to setup vue Apps using Build Tools
+.....................................................................................
+
+Tool for creating and Managining vue app life cycles
+
+
+vue-cli
+ old pattern
+vite
+ modern pattern - recommended
+ npm init vue@latest
+
+This is abstraction for vite based project templates
+
+>npm init vue@latest
+Need to install the following packages:
+  create-vue@latest
+Ok to proceed? (y) y
+
+Vue.js - The Progressive JavaScript Framework
+
+√ Project name: ... vue-modern
+√ Add TypeScript? ... No / Yes
+√ Add JSX Support? ... No / Yes
+√ Add Vue Router for Single Page Application development? ... No / Yes
+√ Add Pinia for state management? ... No / Yes
+√ Add Vitest for Unit Testing? ... No / Yes
+√ Add Cypress for both Unit and End-to-End testing? ... No / Yes
+√ Add ESLint for code quality? ... No / Yes
+√ Add Prettier for code formatting? ... No / Yes
+
+Scaffolding project in E:\session\Toshiba\vue-session\vue-modern...
+
+Done. Now run:
+
+  cd vue-modern
+  npm install
+  npm run lint
+  npm run dev
+....................................................................................
+				Component Creational Pattern
+....................................................................................
+
+1.Plain Java script Pattern
+
+App.js
+export default {
+  
+  ...options 
+  
+}
+
+2.Single File Components -SFC
+
+ It is more declarative way of creating components
+ As name suggest, All Component logic inside single file.
+
+Component has three major sections
+
+1.template
+2.javascript
+3.style
+
+In SFC Pattern, we isloate very clearly into three sections
+
+<script>
+   ....All javascript code
+</script>
+<template>
+  ...template code
+</template>
+<style>
+ //style for this component
+</style>
+
+
+Plain javascript pattern is usefull where there is no build workflow,SFC is usefull and necessary in build tool work flow 
+
+SFC components are saved with fileName.vue
+....................................................................................
+                                SFC API styles
+...................................................................................
+
+				SFC Component
+	----------------------------------------------------------------
+        |                                                             |
+        |                                                             |
+
+      Options Api                                              Composition Api
+
+
+
+Commonality between both patterns
+
+1.code segementation is same
+  <script></script>
+  <template></template>
+  <style></style>
+
+
+Options Api Style Pattern:
+<!-- Options Api Pattern -->
+<script>
+//you have to return options object
+export default {
+
+}
+</script>
+<template>
+  <h1>Welcome to Vue App-Using SFC On Options Object Pattern</h1>
+</template>
+<style>
+</style>
+.....................................................................................
+Compostion Api Pattern:
+
+<!-- Compostion api Pattern :Using setup function  -->
+<script>
+ //java script code can go directly
+
+export default {
+  setup(){
+
+  }
+}
+ 
+</script>
+<template>
+  <h1>Single File Component using Composition Api Pattern</h1>
+</template>
+<style>
+</style>
+<!-- Compostion api Pattern  -->
+<script setup>
+ //java script code can go directly
+ 
+</script>
+<template>
+  <h1>Single File Component using Composition Api Pattern</h1>
+</template>
+<style>
+</style>
+....................................................................................
+			Component tree-Component Creational Pattern
+....................................................................................
+
+HTML View:
+
+<body>
+ <div id="root">
+    <div>
+	<h1>Welcome to Vue</h1>
+    </div>
+ </div>
+</body>
+
+
+Vue View
+<body>
+ <div id="root">
+    <App>
+	<Greeter></Greeter>
+    </App>
+ </div>
+</body>
+
+
+App.vue
+<script>
+import Greeter from "./components/Greeter.vue";
+export default {
+    components: { Greeter }
+}
+</script>
+<template>
+   <h1>Vue Application</h1>
+   <Greeter></Greeter>
+</template>
+
+Greeter.vue
+<script>
+</script>
+<template>
+    <h1>Greeter</h1>
+</template>
+
+Welcome.vue
+<script>
+</script>
+<template>
+    <h1>Welcome</h1>
+</template>
+
+.................................................................................
+			   Project layout
+
+In general Projects can be categorized into  2 sections
+
+1.feature based
+products
+customers
+inventory
+payment
+etc...
+2.framework based
+src/
+ components
+    ....
+Feature + framework
+ 
+ components
+    |
+    features
+
+components
+  |
+  products
+    products-list.vue
+    products-edit.vue
+    products-search.vue
+
+eg:
+
+<!-- Component Using options api pattern -->
+<script>
+import Greeter from './components/greeter/Greeter.vue';
+import Users from './components/users/Users.vue';
+//java script code will go inside literal object,which must be exported using export default
+export default {
+    components: { Greeter, Users }
+}
+</script>
+<template>
+  <div>
+     <Greeter></Greeter>
+     <Users></Users>
+  </div>
+</template>
+<style>
+</style>
+
+src/components/greeter/Greeter.vue
+
+<script>
+import Welcome from './Welcome.vue';
+import Hello from './Hello.vue';
+import Hai from './Hai.vue';
+
+export default {
+   components: { Welcome, Hello, Hai }
+}
+</script>
+<template>
+   <Welcome></Welcome>
+   <Hello></Hello>
+   <Hai></Hai>
+</template>
+<style>
+</style>
+
+src/components/users/User.vue
+<script>
+
+export default {
+}
+</script>
+<template>
+    <div>
+        <h2>Users Page</h2>
+    </div>
+</template>
+<style>
+</style>
+
+
+
+src/components/greeter/Welcome.vue
+<script>
+export default {
+
+}
+</script>
+<template>
+    <h1>Welcome to Vue!!!</h1>
+</template>
+<style>
+</style>
+
+
+
+src/components/greeter/Hello.vue
+<script>
+export default {
+
+}
+</script>
+<template>
+    <h1>Hello Vue!</h1>
+</template>
+<style>
+</style>
+
+src/components/greeter/Hai.vue
+<script>
+export default {
+   
+}
+</script>
+<template>
+    <h1>Hai Vue</h1>
+</template>
+<style>
+</style>
+.....................................................................................
+			   SFC - Composition API Pattern
+.....................................................................................
+
+In Compostion api pattern, there is a "hook(special function)" called "setup"
+
+In Compostion api all javascript code will go inside "setup"  function only
+
+
+				Compostion Api 
+				     |
+	--------------------------------------------------------------
+        |                                                            |
+     Imperative                                                 Declarative
+
+
+
+Imperative:
+ All code must go inside setup function
+
+<script>
+export default {
+
+   setup(){
+      //component code
+   }
+
+}
+</script>
+
+Declarative:
+
+<script setup>
+ //component
+</script>
+
+....
+
+Component Composition using Composition Api pattern using Imperative style
+
+<script>
+import User from "./components/users/User.vue";
+
+export default {
+  components: {
+    User
+  },
+  setup() {
+    //javascript code
+    return {   }
+  }
+}
+</script>
+<!-- <script setup>
+import User from "./components/users/User.vue";
+  //javascript code
+</script> -->
+<template>
+  <h1>Vue App using Composition Api</h1>
+  <User></User>
+</template>
+<style>
+</style>
+....................................................................................
+
+eg:
+
+src/components/App.vue
+
+<!-- <script>
+import User from "./components/users/User.vue";
+
+export default {
+  components: {
+    User
+  },
+  setup() {
+    //javascript code
+    return {   }
+  }
+}
+</script> -->
+<script setup>
+import User from "./components/users/User.vue";
+  //javascript code
+</script>
+<template>
+  <h1>Vue App using Composition Api</h1>
+  <User></User>
+</template>
+<style>
+</style>
+...
+src/components/Users.vue
+<script setup>
+</script>
+<template>
+    <h1>User Page</h1>
+</template>
+<style>
+</style>
+...................................................................................
+				Task
+
+Create Layout 
+1.header
+   |
+   Logo
+   SearchPanel
+   LoginPanel
+2.main
+   |
+   three sections
+    -Vue features
+3.Footer
+   |
+   Sponors
+   copyright
+
+You have to try
+
+1.Options api
+2.Compositions api with imperative and declarative Patterns
+............................&&&&&&&&&&..............................................
+			    Component Registeration
+.....................................................................................
+
+A Vue component needs to be "registered" so that Vue knows where to locate its implmeneation when it is encountered in a template.
+
+Two Types of Registeration:
+
+1.Global Registeration
+  Global Components
+2.Local Registeration
+  Local Components
+
+Global Components:
+  Components are created and  registered as part of the application object
+  Global Components can be accessed any where in the application without explicit   configuration
+
+  import {createApp} from 'vue'
+
+  const app=createApp(App)
+
+  app.component()
+  app.use()
+  app.provide()
+
+IN SFC with options object without global registeration
+<script>
+import ComponentA from './ComponentA.vue'
+export default {
+  components:ComponentA
+}
+<script>
+<template>
+   <ComponentA></ComponentA>
+</template>
+
+
+
+IN SFC with options object with global registeration
+app.component('name',componentDefintion)
+
+<script>
+export default {
+
+}
+<script>
+<template>
+   <ComponentA></ComponentA>
+</template>
+
+IN SFC with composition api without global registration
+<script setup>
+import ComponentA from './ComponentA.vue'
+
+<script>
+<template>
+   <ComponentA></ComponentA>
+</template>
+
+
+eg:
+ app.component('name',componentDefintion)
+
+interface App {
+  component(name: string): Component | undefined
+  component(name: string, component: Component): this
+}
+
+Global Components are registered in two mode
+
+1.Using options object without build tools
+
+import { createApp } from 'vue'
+
+const app = createApp({})
+
+app.component(
+  // the registered name
+  'MyComponent',
+  // the implementation
+  {
+    /* ... */
+  }
+)
+2.Using SFC  with build tool
+
+import MyComponent from './App.vue'
+
+app.component('MyComponent', MyComponent)
+
+...................................................................................
+		Global Component with Compostion(impeative) and Options api
+...................................................................................
+
+<!-- This synatx is common for both options api and composition api using imperative pattern -->
+<script>
+import Logo from './components/Logo.vue'
+import StatusBar from './components/StatusBar.vue' //Global Component
+export default {
+  // components: { Logo } // Component Registration - Local compoent
+}
+</script>
+<template>
+   <Logo></Logo>
+   <StatusBar></StatusBar>
+</template>
+<style>
+</style>
+................................................................................
+			Global Component with Compostion(declarative)
+...................................................................................
+
+<script setup>
+import Logo from './components/Logo.vue'
+import StatusBar from './components/StatusBar.vue' //Global Component
+</script>
+<template>
+    <Logo></Logo>
+    <StatusBar></StatusBar>
+</template>
+<style>
+</style>
+
+.................................................................................
+			 Local Components Registration
+................................................................................
+
+Components are registered when the child component is created
+
+SFC using composition pattern using setup attribute:
+
+Greeter.vue
+<script setup>
+  import ComponentA from './ComponentA.vue'
+</script>
+
+<template>
+  <ComponentA />
+</template>
+
+SFC using composition pattern using without setup attribute:
+
+Greeter.vue
+<script setup>
+  import ComponentA from './ComponentA.vue'
+
+export default {
+   components: { 
+         ComponentsA
+   }
+}
+</script>
+
+<template>
+  <ComponentA />
+</template>
+...................................................................................
+			Global Vs Local Component Registration
+.................................................................................
+
+=>Global registration prevents build systems from removing unused components (a.k.a "tree-shaking").
+=>If you globally register a component but end up not using it anywhere in your app, it will still be included in the final bundle.
+
+=>Global registration makes dependency relationships less explicit in large applications. 
+
+=>It makes it difficult to locate a child component's implementation from a parent component using it.
+
+=>This can affect long-term maintainability similar to using too many global variables.
+....................................................................................
+....................................................................................
+			 Component Naming Conventions
+.....................................................................................
+
+PascalCase names are valid JavaScript identifiers. This makes it easier to import and register components in JavaScript. It also helps IDEs with auto-completion.
+
+<PascalCase /> makes it more obvious that this is a Vue component instead of a native HTML element in templates. It also differentiates Vue components from custom elements (web components).
+
+This is the recommended style when working with SFC or string templates. However, as discussed in DOM Template Parsing Caveats, PascalCase tags are not usable in DOM templates.
+
+The Component names can be kebab-case /dash case eg
+   <app-root>
+   <hello-world>
+   <greeter>
+Vue supports both cases , but highly recommened is Pascal Case
+.....................................................................................
+			  Exploring Templates
+.....................................................................................
+
+Template is the representation of View
+View is Runtime representation
+
+Template can be static or dynamic 
+
+Static templates are having pure html code
+Dynamic templates are having html code + Vue instructions
+Vue instructions are special symbols
+  
+Template  = html + data(state)
+
+Data Binding:
+.............
+  Passing data from the Component to View and View to Component
+
+Types of Data bidning:
+
+1.interpolation
+2.property /props binding
+3.attribute binding
+4.event binding
+5.Two way data binding
+6.class and style binding
+...................................................................................
+				Interpolation
+....................................................................................
+
+Transfering data(state) from Component to View.
+
+State:
+  State Can be represented in two ways
+1.primitives - numbers,strings,boolean
+  let name='subramanian'
+  let salary=100
+  let isValid=true
+2.objects and collections -  literal object,arrays
+  
+  let profile = {
+    id:1,
+    name:'Arun'
+  }
+  let profiles = [{
+    id:1,
+    name:'Arun'
+  },{
+    id:2,
+    name:'Bala'
+  }]
+
+SFC:
+ 1.Using Options api
+ 2.Using Composition api
+
+
+Object literal syntax
+
+let options = {
+ 
+  data:?,
+  props:?,
+  methods:?
+
+}
+
+let user = { 
+  id:1,
+  name:'subu',
+  isValid:true,
+  skilss: ['javascript'],
+  getAll: function(){
+	///
+  },
+  save:function(user){
+     //
+  }
+ 
+}
+user.id,user.getAll()
+
+
+
+es 5 way of writing functions
+
+export default { 
+  id:1,
+  name:'subu',
+  isValid:true,
+  skilss: ['javascript'],
+  getAll: function(){
+	///
+  },
+  save:function(user){
+     //
+  }
+ 
+}
+
+
+
+es 6 way of writing functions
+
+export default { 
+  id:1,
+  name:'subu',
+  isValid:true,
+  skilss: ['javascript'],
+  //function es 6 synatx
+  getAll(){
+	///
+  },
+  save(user){
+     //
+  }
+ 
+}
+.............
+
+data :
+ A function which returns "reactive state" as object
+
+<!-- options api pattern -->
+<script>
+export default {
+    data() {
+        //return state(data)
+        return {
+            message:'Hello'
+        }
+    }
+}
+</script>
+<template>
+</template>
+<style>
+</style>
+
+How to bind data inside template which was returned from the "data" function.
+
+{{variableName}} - interplation
+
+
+Using Options Api:
+<!-- options api pattern -->
+<script>
+export default {
+    data() {
+        //return state(data)
+        return {
+            message:'Hello'
+        }
+    }
+}
+</script>
+<template>
+<h1>{{message}}</h1>
+</template>
+<style>
+</style>
+<script>
+import Greeter from './components/Greeter.vue';
+export default {
+    components: { Greeter }
+}
+</script>
+<template>
+    <Greeter></Greeter>
+</template>
+<style>
+</style>
+
+
+
+Using Composition Api:
+
+<script> without setup attribute
+
+<script setup> With setup attribute
+
+
+<script> without setup attribute:
+.................................
+
+The component logic must be encapsulated inside a function called "setup"
+
+export default {
+
+ setup(){
+
+   return {}
+ }
+
+}
+
+eg:
+<script>
+//composition api with setup function
+export default {
+    setup() {
+        console.log('setup is called')
+        const message = 'Hello!!'
+        //variables or any thing if you want to access inside template, must be returned via an object
+        return {
+            //message:message
+            message
+        }
+    }
+}
+</script>
+<template>
+    <h1>Data Binding :Using Composition App with Setup Function</h1>
+    <h1>{{ message }}</h1>
+</template>
+
+<script setup> With setup attribute:
+.......................................
+<script setup>
+//variable declarations
+const message = "Hello"
+//function declarations
+function sayHai() {
+    return 'Hai'
+}
+</script>
+<template>
+    <h1>Data Binding :Using Composition App with Setup attribute</h1>
+    <h1>{{ message }} {{ sayHai() }}</h1>
+</template>
+
+=><script setup> is compile time syntactic sugar for composition API inside SFCs
+=>It is highly recommended syntax if you are using both SFCs and compostion API
+=>It offers lot benefits over normal syntax
+
+ 1.More readable code with less boilerplate
+ 2.Better Runtime Performance
+ 3.Render performance
+ 4.Better IDE support
+
+code segments inside script setup
+
+1.variable declarations
+2.function declarations
+3.import other components and utiltity functions
+....................................................................................
+			 Data binding
+....................................................................................
+
+<script setup>
+//declare state variables
+const userId = 1
+const firstName = 'Subramanian'
+const salary = 10000
+const status = true
+const address = {
+    city: 'Coimbatore',
+    state: 'Tamil Nadu'
+}
+const skills = ['Javascript', 'Vue', 'Angular', 'React', 'Java']
+
+</script>
+<template>
+    <div>
+        <h1>User Details</h1>
+        <h3>Id : {{ userId }}</h3>
+        <h3>Name : {{ firstName }}</h3>
+        <h3>Salary : {{ salary }}</h3>
+        <h3>Address : {{ address.city }} {{ address.state }}</h3>
+        <h3>Skills {{ skills }}</h3>
+
+    </div>
+</template>
+<style>
+</style>
+
+App.vue
+<script setup>
+import User from './components/User.vue';
+</script>
+<template>
+    <User></User>
+</template>
+<style>
+</style>
+.....................................................................................
+				Directives
+....................................................................................
+What is directive?
+  Directive is object which helps to create custom elements and attributes.
+  Directive enchances existing html elements.
+
+Vue is highly modular framework, code reuse is main objective.
+
+Code Resue Patterns:
+
+1.Compoents
+2.Composables(Hooks)
+3.Directives
+
+Components are main building blocks,while composable are focused on "resuing stateful logic".
+Custom Directives, on the other hand, are mainly intented for reusing logic that involes low-level DOM Acess on plain elements.
+
+HTML element types:
+
+1.built in elements and attributes
+2.custom elements and attributes
+
+
+<h1>Hello</h1> - built in element
+
+HTML Compiler Work flow
+
+<h1>Hello</h1> ------>compiler verfies this element is built in or not
+		|
+	   ---------------------
+           |                   |
+          yes                 no
+      Browser parses the    Browser throws Exception called UnKnownElement and 			    convert that element as "text Node"
+      element and render
+      accordingly
+
+
+<app-drawer> -  it is custom element, generally browser does not understand.
+
+In 2007, W3C introduced new idea that developers can add their own tags/elements -
+HTML 5
+<app-drawer>
+<app-logo>
+We can teach browser via javascript.
+
+<app-drawer> ------|js---rendering - Custom elements
+
+Custom attributes:
+  As part of HTML 5, We can introduce new attributes on existing html elements , we can attach js to teach browser how to interpt the attributes.
+
+ <div id="" class="" style="" ></div>
+       |       |       |
+      attributes -  Built in attributes
+
+  <div custom-attribute> </div>
+
+
+Vue helps to add custom attributes on existing elements via "directives" -Attribute Directives
+
+Directive is object, which encapsulate the logic of that attribute
+
+Attribute directives syntax
+.............................
+
+v-directiveName
+
+Built in Directives:
+...................
+v-text
+v-html
+v-show
+v-if
+v-else
+v-else-if
+v-for
+v-on
+v-bind
+v-model
+v-slot
+v-pre
+v-once
+v-memo
+v-cloak
+
+..................................................................................
+			    v-html and v-text
+...................................................................................
+
+v-html :
+ inserts data into html element as "HTML"
+{{}} 
+  inserts data into html element as "Plain Text"
+
+				v-text
+
+Update the element's text content. - innerText
+
+<script setup>
+const name = 'Subramanian'
+</script>
+<template>
+    <div>
+        <h1>Interpolation using mustace Notation</h1>
+        <h1>Your Name : {{ name }}</h1>
+        <h1>InterPolation using directive-innerText</h1>
+        <!-- <h1 v-text="name"></h1> -->
+        <h1 v-text="`Your Name is ${name}`"></h1>
+        <h1>InterPolation using directive-innerHTML</h1>
+        <h1 v-html="` Your Name is ${name}`"></h1>
+
+    </div>
+</template>
+<style>
+</style>
+..................................................................................
+			       v-bind
+.................................................................................
+
+v-bind binds html element attributes or component values(properties) dyamically.
+
+Static binding
+ <img src="logo.png"/>
+
+dynamic binding
+ if img location is given inside script as variable, now i want to bind that image to img element
+<script>
+  const imageUrl="logo.png"
+</script>
+
+<img v-bind:src="imageUrl"/>
+
+<script setup>
+const imageUrl = "/src/assets/logo.svg"
+const isEnabled = true
+</script>
+<template>
+    <h1>Bind Directives</h1>
+    <div>
+        <h2>Static Image</h2>
+        <img src="./assets/logo.svg" height="100" width="100" />
+    </div>
+    <div>
+        <h2>Dynamic Image using v-bind Directive</h2>
+        <img v-bind:src="imageUrl" height="100" width="100" />
+    </div>
+    <div>
+        <h2>Dynamic Image using v-bind Directive-short cut</h2>
+        <img :src="imageUrl" height="100" width="100" />
+    </div>
+    <button :disabled="isEnabled">Show</button>
+</template>
+<style>
+</style>
+....................................................................................
+			     Data  Representation in Vue
+....................................................................................
+
+Data can be reprsented inside component in two ways
+
+1.state pattern
+   The data is encasulated inside component itself
+2.props pattern
+   The data is supplied from outside(parent component)
+
+
+State Pattern:
+
+ Data is two type
+
+data can be both primitive or objects(arrays)
+ 
+1.Non Reactive 
+
+2.Reactive 
+
+Non Reactive data when you change /update, never tigger render cycles of view
+
+eg:
+<script>
+export default {
+    setup() {
+        //state- non reactive
+        const counter = 0
+        return {
+            counter
+        }
+    }
+}
+</script>
+<template>
+    <div>
+        <h1>State Application -Non Reactive</h1>
+        <h1>Counter : {{ counter }}</h1>
+    </div>
+</template>
+
+if you want to change data, we need to interact with UI, we need event handling
+.................................&&&&&&&&&&&&.......................................
+			    Event Handling
+...................................................................................
+
+Event handling is one of the most popular concept in javascript as part of DOM programming.
+Event handling helps to interact with user.
+Events  are signals triggered by user or system, send to os system, the software or hardware reacts according to the event
+
+Events are classified into two category
+
+1.Hardware events
+   Triggered by user or system, interacts with hardware devices   
+eg:
+  Mouse events
+    onclick,ondblclick,onmouseenter...
+  https://www.w3schools.com/jsref/obj_mouseevent.asp
+  Keyboard events
+   onkeypress,onkeydown
+  https://www.w3schools.com/jsref/event_onkeypress.asp
+  Touch events
+  ontouchstart,ontouchend
+  https://www.w3schools.com/jsref/obj_touchevent.asp
+
+2.Application events
+   attached with objects called dom objects
+  onload,oncomplete
+...................................................................................
+				How event handling works
+
+Event handling has been designed based on the design pattern called "pub-sub"/observer design pattern.
+
+There are two actors:
+1.Producer
+   The producer is something who sends signals(events - name of the event and data assoicated) to the listener
+2.Listener
+  The Listener is someone who waits/listens for event.
+  Once the event is given who reacts/respond
+
+In js :
+ Listener is function.
+
+//event is just reference to the Event Object having information about event, and data
+function listener(event){
+     event.target.value
+}
+event object is a bridge between producer and listener
+
+In javascript , events are given by language itself.
+events are started with "on+eventName" - 
+ onclick="listener"
+ addEventListener('click',listener)
+listeners are plain js functions with event object reference arg
+
+Frameworks like vue,react,angular who adds their own abstractions.
+
+We can attach event on any dom element which could be application or hardware
+
+Vue event attachment:
+.....................
+ Vue attaches event with help of directive called "v-on"
+
+Syntax:
+ <element v-on:NameoftheEvent="listner"></element>
+ <button v-on:"doThis">Click</button>
+
+
+Simple event Handing with Options api pattern:
+..............................................
+<!-- Event listner in the options api -->
+<script>
+export default {
+    methods: {
+        //listener
+        hello(event) {
+            console.log(event)
+            console.log('Hello')
+            alert('Hello')
+        },
+        hai(event){
+            console.log('hai')
+        }
+    }
+}
+</script>
+<template>
+    <button v-on:click="hello">SayHello</button>
+    <button v-on:click="hai">SayHai</button>
+
+</template>
+
+Event listner in the compostion api with setup function
+........................................................
+<script>
+export default {
+    setup() {
+
+        //es 5 function style
+        // function hello(event) {
+        //     console.log('hello')
+        // }
+
+        // function hai(event) {
+        //     console.log('hai')
+        // }
+
+        //es 6 arrow functions
+        const hello = event => console.log('hello')
+        const hai = event => console.log('hai')
+
+        return {
+            //hello:hello, hai:hai
+            //es 6 destructured syntax
+            hello, hai
+        }
+    }
+}
+</script>
+<template>
+    <button v-on:click="hello">SayHello</button>
+    <button v-on:click="hai">SayHai</button>
+
+</template>
+.............................................................................
+
+Event listner in the compostion api with setup attribute
+<script setup>
+//es 6 arrow functions
+const hello = event => console.log('hello')
+const hai = event => console.log('hai')
+</script>
+<template>
+    <button v-on:click="hello">SayHello</button>
+    <button v-on:click="hai">SayHai</button>
+</template>
+
+Syntax: Short cut
+ <button @click="doThis">Click</button>
+....................................................................................
+		 How to attach more than one listener on single DOM Element
+...................................................................................
+
+<dom v-on:eventName="listener" v-on:eventName="listener">
+<dom v-on="{mouseenter:onMouseEnter,mouseleave:onMouseLeave}">
+
+<!-- Event listner in the compostion api with setup attribute -->
+<script setup>
+//es 6 arrow functions
+const onMouseLeave = event => console.log('exit')
+</script>
+<template>
+    <button v-on:click="hello">SayHello</button>
+    <button v-on:click="hai">SayHai</button>
+    <button @click="hai">SayHai</button>
+    <div>
+        <h1 v-on="{ mouseenter: onMouseEnter, mouseleave: onMouseLeave }">Book Now</h1>
+    </div>
+</template>
+..................................................................................
+			  How to pass data to the event listener
+..................................................................................
+const getData = (data,event) => {
+    console.log(data,event)
+}
+ <button @click="getData('hello',$event)">Pass Data</button>
+
+when we pass data to the listener, vue cant  pass event implicitly, we have to pass event object explicitly via "$event" which is glbal event object provided by vue.
+....................................................................................
+			       State
+
+Data upate,is called state mutation.
+
+State Mutation using options api pattern
+
+<script>
+export default {
+    data() {
+        return {
+            //state variable
+            count: 0 // inital state
+        }
+    },
+    methods: {
+        increment() {
+            //refer the state via this
+            this.count++ // state mutation
+        }
+    }
+}
+</script>
+<template>
+    <div>
+        <h1>Counter App</h1>
+        <h2>Value : {{ count }}</h2>
+        <button @click="increment">+</button>
+    </div>
+</template>
+<style>
+</style>
+.....................................................................................
+			
+
+State Mutation using compostion with setup  function 
+
+<script>
+export default {
+    setup() {
+        let count = 0
+        console.log('inital count', count)
+        const increment = event => {
+            count++
+            console.log('incremented count ', count)
+        }
+
+        return {
+            count, increment
+        }
+    }
+}
+</script>
+<template>
+    <div>
+        <h1>Counter App</h1>
+        <h2>Value : {{ count }}</h2>
+        <button @click="increment">+</button>
+    </div>
+</template>
+<style>
+</style>
+
+Here we are trying to mutate/update the "count" state variable, there is update happening but it does not trigger "view update"
+....................................................................................
+				Reactivity
+....................................................................................
+
+What is Reactivity?
+  Reactivity is one of the core vue js concept.
+Component state are reactive javascript objects.
+
+The word reactivity means "changing" the state(object),whenever changes happen it publishes some events, based on events,reactions happens.
+
+Programming work flow in general
+
+int x =10;
+int y =20;
+
+int result = x + y
+
+when you compute this code, the runtime will execute instructions top-down pattern.
+if there is change in variable (like x or y), will not update result variable
+ -Sequential programming model.
+
+What if i want to update the "result" variable value automatically when ever x or y changes.
+
+eg:
+Excel spreed sheet is one of the best eg for reactivitity programming
+
+eg;
+
+let A1=1
+let A2=2
+let A3 =A1+A2
+console.log(A3) => 3
+
+A2=4
+
+console.log(A3) 
+
+Here when you mutate A1 or A2, does not change automatically.
+
+
+We can wrap this code inside function
+
+ let A3
+ function update(){
+   A3 = A1 + A2
+ }
+
+in order get fresh value, we have to re-run the code that updates A3
+
+
+Pointers:
+
+1.There should be some update function, which produces a "side effect /effect".
+  if any function which changes the state of the program called side effect.
+
+2.Here ,A1 and A2 are considered dependencies of the side effect, because which helps makes side effects.
+  According to dependencies, this effect is said to be "subscriber"
+
+When ever "A1 and A2" changed, we need to invoke "update" function,which cause side effects.
+
+It looks like event driven programming (Pub-Sub Pattern /Observerable and Observer) 
+
+ function whenDepChange(update){
+     update()
+ }
+
+ let A3
+ function update(){
+   A3 = A1 + A2
+ }
+
+ whenDepChange(function(){
+     A3 = A1 + A2
+ })
+ whenDepChange(update)
+
+Role of whenDepchange function:
+................................
+
+1.Tracking the dependencies,
+    By evaulating the expression A1 and A2 ,Whether any one of them is read or not.
+
+Tracker--->triggers--whenDepChange--->runs update function---returns modified state
+
+
+Compostion Api pattern:
+
+ref()
+computed()
+reactive()
+readonly()
+watchEffect()
+watchPostEffect()
+watchSyncEffect()
+watch()
+
+How to implement simple reactivity ?
+
+<!-- State Mutation using compostion with setup  function  -->
+<script>
+import { ref } from 'vue'
+
+export default {
+    setup() {
+        //non reactivity state
+        //let count = 0
+        //reactivity state
+        let count = ref(0)
+        console.log('inital count', count)
+        const increment = event => {
+            count.value++
+            console.log('incremented count ', count.value)
+        }
+
+        return {
+            count, increment
+        }
+    }
+}
+</script>
+<template>
+    <div>
+        <h1>Counter App</h1>
+        <h2>Value : {{ count }}</h2>
+        <button @click="increment">+</button>
+    </div>
+</template>
+<style>
+</style>
+.....
+<!-- State Mutation using compostion with setup  attribute  -->
+<script setup>
+import { ref } from 'vue'
+//reactivity state
+let count = ref(0)
+console.log('inital count', count)
+const increment = event => {
+    count.value++
+}
+</script>
+<template>
+    <div>
+        <h1>Counter App</h1>
+        <h2>Value : {{ count }}</h2>
+        <button @click="increment">+</button>
+    </div>
+</template>
+<style>
+</style>
+.....................................................................................
+			Multiple Listeners and state mutation
+.....................................................................................
+
+<!-- State Mutation using compostion with setup  attribute  -->
+<script setup>
+import { ref } from 'vue'
+
+let count = ref(0)
+const increment = event => {
+    count.value++
+}
+const decrement = event => {
+    count.value--
+}
+</script>
+<template>
+    <div>
+        <h1>Counter App</h1>
+        <h2>Value : {{ count }}</h2>
+        <button @click="increment">+</button>
+        <button @click="decrement">-</button>
+
+    </div>
+</template>
+<style>
+</style>
+.....................................................................................
+			Multi Reactive State Variable
+
+<script setup>
+import { ref } from 'vue'
+
+const like = ref(0)
+const dislike = ref(0)
+
+const onlike = event => {
+    like.value++
+}
+const ondislike = event => {
+    dislike.value++
+}
+</script>
+<template>
+    <div>
+        <h1>Counter App</h1>
+        <h2>Likes : {{ like }} Dislikes : {{ dislike }}</h2>
+        <button @click="onlike">Like</button>
+        <button @click="ondislike">Dislike</button>
+    </div>
+</template>
+<style>
+</style>
+...................................................................................
+			How to declare reactive objects
+
+<script setup>
+import { reactive } from 'vue';
+
+
+//to make object reactive
+const comments = reactive({
+    like:0,
+    dislike:0
+})
+console.log(comments)
+
+const onlike = event => {
+    comments.like++
+}
+const ondislike = event => {
+    comments.dislike++
+}
+</script>
+<template>
+    <div>
+        <h1>Counter App</h1>
+        <h2>Likes : {{ comments.like }} Dislikes : {{ comments.dislike }}</h2>
+        <button @click="onlike">Like</button>
+        <button @click="ondislike">Dislike</button>
+    </div>
+</template>
+<style>
+</style>
+
+reactive():
+=>Reactive converstation(changes) are even updated for deep nested objects
+=>reactive api compares every property in the object before ui re renders for changes
+let obj={
+ 
+  a:1
+  b: {
+    c: {
+     d: {
+	e:0
+     }
+    }
+  }
+
+}
+
+.................................................................................
+                      Deep nested Object and reactive api
+..................................................................................
+
+<script setup>
+import { reactive } from 'vue';
+
+
+//to make object reactive
+const comments = reactive({
+    like: 0,
+    dislike: 0,
+    recommend: {
+        rating: {
+            value: 90
+        }
+    }
+})
+console.log(comments)
+
+const onlike = event => {
+    comments.like++
+}
+const rating = event => {
+    comments.recommend.rating.value++
+}
+</script>
+<template>
+    <div>
+        <h1>Counter App</h1>
+        <h2>Likes : {{ comments.like }} Dislikes : {{ comments.dislike }}
+            Rating : {{ comments.recommend.rating.value }}</h2>
+        <button @click="onlike">Like</button>
+        <button @click="ondislike">Dislike</button>
+        <button @click="rating">Rating</button>
+
+    </div>
+</template>
+<style>
+</style>
+
+..
+
+
+obj.a++
+here vue compares all nested object properties for changes before rerendering.
+To avoid unncessary comparsion, vue recommends another api called "shallowRef"
+
+
+shallowRef:
+
+Shallow version of reactive api
+There is no deep conversion
+
+
+const state = shallowReactive({
+  foo: 1,
+  nested: {
+    bar: 2
+  }
+})
+
+// mutating state's own properties is reactive
+state.foo++
+
+// ...but does not convert nested objects
+isReactive(state.nested) // false
+
+// NOT reactive
+state.nested.bar++
+
+eg:
+<script setup>
+import { shallowReactive } from 'vue';
+
+
+//to make object reactive
+const comments = shallowReactive({
+    like: 0,
+    dislike: 0,
+    recommend: {
+        rating: {
+            value: 90
+        }
+    }
+})
+console.log(comments)
+
+const onlike = event => {
+    comments.like++
+}
+const rating = event => {
+    comments.recommend.rating.value++
+}
+</script>
+<template>
+    <div>
+        <h1>Counter App</h1>
+        <h2>Likes : {{ comments.like }} Dislikes : {{ comments.dislike }}
+            Rating : {{ comments.recommend.rating.value }}</h2>
+        <button @click="onlike">Like</button>
+        <button @click="ondislike">Dislike</button>
+        <button @click="rating">Rating</button>
+
+    </div>
+</template>
+<style>
+</style>
+....................................................................................
+			List rendering-Arrays
+....................................................................................
+
+
+Arrays:
+=>Arrays are basic datastructure which is used to render collection of data.
+=>Arrays are dynamic 
+
+Arrays and UI
+ if you want to render more data , then array is used..
+Arrays can help to build in UI layouts in various ways
+
+Layouts:
+
+1.List View
+  <ul><li></li></ul>
+
+2.Card View layout
+   <div> <header>....
+
+3.Grid View layout
+   <table>
+
+
+v-for directive:
+ this directive used for array rendering / object rendering.
+
+<div v-for="item in items">
+  {{ item.text }}
+</div>
+
+<div v-for="(item, index) in items"></div>
+<div v-for="(value, key) in object"></div>
+<div v-for="(value, name, index) in object"></div>
+
+
+List Rendering:
+<script setup>
+import { reactive } from 'vue';
+import TODOS from './mock-data/todos-mock'
+
+const todos = reactive(TODOS)
+
+
+</script>
+<template>
+<div>
+    <h1>Todo List</h1>
+    <ul>
+        <li v-for="todo in todos">
+            <span>{{todo.title}}</span>
+        </li>
+    </ul>
+</div>
+
+</template>
+<style>
+</style>
+...................................................................................
+			List with Index
+...................................................................................
+<script setup>
+import { reactive } from 'vue';
+import TODOS from './mock-data/todos-mock'
+
+const todos = reactive(TODOS)
+
+
+</script>
+<template>
+<div>
+    <h1>Todo List</h1>
+    <ul>
+        <li v-for="(todo,index) in todos">
+            <span>{{index}} {{todo.title}}</span>
+        </li>
+    </ul>
+</div>
+
+</template>
+<style>
+</style>
+
+.................................................................................
+				key
+
+if there is reordering in the list when we do some changes like sorting,filtering
+vue uses an algorthim called patch..
+We can tell to that algorthim how we can re arrange. thats where key attribute comes into picture.
+key value must be unquie
+
+<script setup>
+import { reactive } from 'vue';
+import TODOS from './mock-data/todos-mock'
+
+const todos = reactive(TODOS)
+
+
+</script>
+<template>
+    <div>
+        <h1>Todo List</h1>
+        <ul>
+            <li v-for="(todo, index) in todos" :key="todo.id">
+                <span>{{ index }} {{ todo.title }}</span>
+            </li>
+        </ul>
+    </div>
+
+</template>
+<style>
+</style>
+....................................................................................
+				Nested List
+
+outter array is iterated with "item in array"
+inner array/nested array is iterated with "nesteditem of nestedarray"
+
+<script setup>
+import { reactive } from 'vue';
+
+const persons = [
+    {
+        id: 1,
+        name: 'A',
+        friends: [
+            {
+                name: 'F1'
+            },
+            {
+                name: 'F2'
+            },
+            {
+                name: 'F3'
+            }
+        ]
+    },
+    {
+        id: 2,
+        name: 'A1',
+        friends: [
+            {
+                name: 'B1'
+            },
+            {
+                name: 'B2'
+            },
+            {
+                name: 'B3'
+            }
+        ]
+    },
+    {
+        id: 3,
+        name: 'A2',
+        friends: [
+            {
+                name: 'C1'
+            },
+            {
+                name: 'C2'
+            },
+            {
+                name: 'C3'
+            }
+        ]
+    }
+]
+const list = reactive(persons)
+</script>
+<template>
+    <ul>
+        <li v-for="person in list">
+            <span>{{ person.id }} {{ person.name }}</span>
+            <ul>
+                <li v-for="friend of person.friends">
+                    <span>{{ friend.name }}</span>
+                </li>
+            </ul>
+        </li>
+    </ul>
+
+
+</template>
+....................................................................................
+			 How to iterate Object using v-for
+....................................................................................
+<script setup>
+import { reactive } from 'vue';
+
+const movie = reactive({
+    title: 'The Matrix',
+    langague: ['English', 'Spanish', 'Hindi', 'Tamil', 'Telgu'],
+    hours: '2 hrs 5 mins'
+})
+
+</script>
+<template>
+    <ul>
+        <li v-for="tmpMovie in movie">
+            <span>{{tmpMovie}}</span>
+        </li>
+    </ul>
+
+</template>
+.....................................................................................
+		 Range - If you want to repeat something n of times
+....................................................................................
+Range 
+ initalvalue in endvalue
+
+<script setup>
+import { ref } from 'vue';
+
+const start = ref(1)
+</script>
+<template>
+    <ul>
+        <li v-for="start in 100">
+            <span>{{ start }}</span>
+        </li>
+    </ul>
+
+</template>
+
+..................................................................................
+			Template and v-for
+.................................................................................
+<script setup>
+import { reactive } from 'vue';
+import todos from './mock-data/todos';
+
+const TODOS = reactive(todos)
+</script>
+<template>
+    <template v-for=" todo in todos">
+        <h1>Todo Id {{ todo.id }}</h1>
+        <p>Status {{ todo.completed ? 'Completed' : 'Not Completed' }}</p>
+    </template>
+
+</template>
+
+.....................................................................................
+			 Array Mutations
+.....................................................................................
+<script setup>
+import { reactive } from 'vue';
+
+const todos = reactive([])
+
+const addItem = () => {
+    //array mutation - add element into array
+    todos.push({
+        id: Math.random(),
+        text: 'do this '
+    })
+}
+</script>
+<template>
+    <ul>
+        <li v-for="todo in todos">
+            {{ todo }}
+        </li>
+    </ul>
+    <button @click="addItem">Add New Item</button>
+</template>
+
+In Array all apis will not trigger render cycle.
+
+Apis which trigger render cycle; -Mutating apis
+
+1.push
+2.pop
+3.shift
+4.unshift
+5.splice
+6.sort
+7.reverse
+
+
+.....................................................................................
+			Filtering/sorting arrays with Immutable api
+
+
+Some times we want to display filtered or sorted data from the array without mutating or reseting the original data
+
+
+<!-- Array immutable api  -->
+
+
+<script setup>
+import { ref } from 'vue';
+import TODOS from './mock-data/todos-mock';
+
+const todos = ref(TODOS)
+
+//immutable logic : filter,map,reduce, you can use even spread operator/object.assign
+const filter = () => todos.value = todos.value.filter(todo => todo.completed)
+
+</script>
+<template>
+    <button @click="filter">filter</button>
+    <h1>Total Items : {{todos.length}}</h1>
+    <ul>
+        <li v-for="todo in todos">
+            {{ todo }}
+        </li>
+    </ul>
+
+</template>
+....................................................................................
+			 Object Destructruing 
+
+<script setup>
+
+//without object destrucing
+// function display(employee) {
+//     console.log(`Id ${employee.id}`)
+//     console.log(`Name ${employee.name}`)
+//     console.log(`City ${employee.address.city}`)
+// }
+//with object destructruing
+//Destructrue means extracting object properties from the object
+function display(employee) {
+    const { id, name, address: { city } } = employee
+    console.log(`Id ${id}`)
+    console.log(`Name ${name}`)
+    console.log(`City ${city}`)
+}
+display({
+    id: 1,
+    name: 'subramanian',
+    address: {
+        city: 'Coimbatore'
+    }
+})
+
+</script>
+<template>
+
+</template>
+.....................................................................................
+			Reactivity and Object Destructuring
+....................................................................................
+<script setup>
+import { reactive } from 'vue';
+
+// const employee = reactive({
+//     id: 1,
+//     name: 'subramanian',
+//     address: {
+//         city: 'Coimbatore'
+//     }
+// })
+const { id, name, address: { city } } = reactive({
+    id: 1,
+    name: 'subramanian',
+    address: {
+        city: 'Coimbatore'
+    }
+})
+</script>
+<template>
+    <div>
+        <p>Id : {{ id }}</p>
+        <p>Name : {{ name }}</p>
+        <p>City : {{ city }}</p>
+
+
+    </div>
+</template>
+....................................................................................
+		  Reactivity ,state Mutation and Object Destructuring
+...................................................................................
+
+After reactive object destructuring, can we state mutation?
+
+here reactive will not trigger for after destructure
+
+How to convert destructured properties into reactive?
+
+1.toRef
+   single property conversion
+
+const state = reactive({
+  foo: 1,
+  bar: 2
+})
+
+const fooRef = toRef(state, 'foo')
+
+2.toRefs
+ multi property conversion
+
+const state = reactive({
+  foo: 1,
+  bar: 2
+})
+
+const stateAsRefs = toRefs(state)
+
+
+
+<!-- State mutation after object destructuring -->
+
+<script setup>
+import { reactive,toRefs } from 'vue';
+
+// const location = reactive({
+//     lat: 10.5,
+//     lng: 90.5
+// })
+
+// const location = reactive({
+//     lat: 10.5,
+//     lng: 90.5
+// })
+// let { lat, lng } = toRefs(location)
+let { lat, lng }  = toRefs(reactive({
+    lat: 10.5,
+    lng: 90.5
+}))
+
+const updateLocation = () => {
+    // location.lat = 22.78
+    lat.value = 22.78
+}
+</script>
+<template>
+    <div>
+        <!--  <p>Lat {{ location.lat }}</p>
+        <p>Lng {{ location.lng }}</p> -->
+        <p>Lat {{ lat }}</p>
+        <p>Lng {{ lng }}</p>
+        <button @click="updateLocation">Update Location</button>
+    </div>
+</template>
+<style>
+</style>
+...................................................................................
+			  Computed Properties
+...................................................................................
+Here we have written "conditional expression inside template", which is not recommended 
+
+=>The code is not declarative (dont write any js logic)
+=>The code is not maintainable , later if you want to change any display message.
+
+We have to isloate the template expression logic into a separate method called as 
+"computed property"
+
+Computed property is written using "computed" api.
+<script setup>
+// import { computed } from '@vue/reactivity';
+import { reactive, computed } from 'vue';
+
+const product = reactive({
+    id: 1,
+    name: 'Books',
+    items: [
+        //'Java', 'Javascript', 'Angular', 'Vue', 'React'
+    ]
+})
+
+const stockInfo = computed(() => {
+    return product.items.length > 0 ? "InStock" : "OutofStock"
+})
+
+
+</script>
+<template>
+    <p>Product Id : {{ product.id }}</p>
+    <p>Product Name : {{ product.name }}</p>
+    <!-- <p>Product Status : {{ product.items.length > 0 ? "InStock" : "OutofStock"}}</p> -->
+    <p>Product Status : {{ stockInfo }}</p>
+</template>
+...................................................................................
+		    State Mutation and Computed Property
+...................................................................................
+
+When you do state mutation, computed property method gets called automatically and returns the latest data always
+
+<script setup>
+import { computed, reactive } from 'vue';
+
+const products = reactive({
+    id: 1,
+    name: 'books',
+    items: [
+        "Vue in Action",
+        "Vue Master Class"
+    ]
+})
+
+//state mutation 
+const update = () => products.items.push("Exploring Vue 3")
+
+const totalStock = computed(() => {
+    return products.items.length;
+})
+
+</script>
+<template>
+    <div>
+        <p>Id : {{ products.id }} </p>
+        <p>Name : {{ products.name }} </p>
+        <!-- <p>Total Item : {{ products.items.length }} </p> -->
+        <p>Total Item : {{ totalStock }} </p>
+
+        <button @click="update">Add Item</button>
+    </div>
+</template>
+<style>
+</style>
+....................................................................................
+			 Template logic with computed property method 
+				and regular javascript Method
+....................................................................................
+
+computed vs regular methods:
+............................
+
+computed is cached where regular methods is not cached.
+
+computed is lazy , that means when ever the property is changed which is represented
+inside computed method
+
+computed method is called only reactive dependency.
+
+computed method is always "getter method"
+
+<script setup>
+import { computed, reactive } from 'vue';
+
+const products = reactive({
+    id: 1,
+    name: 'books',
+    items: [
+        "Vue in Action",
+        "Vue Master Class"
+    ]
+})
+
+//state mutation 
+const update = () => products.items.push("Exploring Vue 3")
+
+//computed method
+const totalStock = computed(() => {
+    console.log('computed is called')
+    return products.items.length;
+    //return 100
+})
+
+//regular/normal method
+const totalStockMethod = () => {
+    console.log('regular method is called')
+    return products.items.length;
+}
+
+
+</script>
+<template>
+    <div>
+        <p>Id : {{ products.id }} </p>
+        <p>Name : {{ products.name }} </p>
+        <!-- <p>Total Item : {{ products.items.length }} </p> -->
+        <p>Total Items withComputed Property : {{ totalStock }} </p>
+        <p>Total Item with Regular Method: {{ totalStockMethod() }} </p>
+
+        <button @click="update">Add Item</button>
+    </div>
+</template>
+<style>
+</style>
+.....................................................................................
+			 Computed property method writable Computed
+
+Computed properties are by default "getter-only", if you try change a new value to a computed a property, you will get runtime warning.
+
+In case if you want to write writable computed property. you have to provide explicit getters and setters.
+<script setup>
+import { computed, ref } from 'vue';
+
+const firstName = ref('Subramanian')
+const lastName = ref('Murugan')
+
+//computeed property to create fullName
+const fullName = computed({
+    //get
+    get() {
+        return `${firstName.value} ${lastName.value}`
+    },
+    //set
+    set(newValue) {
+        //we have to use destructuring syntax
+        [firstName.value, lastName.value] = newValue.split(' ')
+    }
+})
+
+</script>
+<template>
+    <h1>Full Name {{ fullName }}</h1>
+</template>
+<style>
+</style>
+....................................................................................
+			 Best pratices for computed Properties
+....................................................................................
+
+1.Getters should side effect free.
+2.Dont do any state mutation inside getters of computed.
+3.It should always computes and return values only.
+.....................................................................................
+			  Watchers
+....................................................................................
+
+
+Computed properties allow us to declaratively compute derived values. However, there are cases where we need to perform "side effects" in reaction to state changes - for example, mutating the DOM, or changing another piece of state based on the result of an async operation
+
+// watching single source
+function watch<T>(
+  source: WatchSource<T>,
+  callback: WatchCallback<T>,
+  options?: WatchOptions
+): StopHandle
+
+// watching multiple sources
+function watch<T>(
+  sources: WatchSource<T>[],
+  callback: WatchCallback<T[]>,
+  options?: WatchOptions
+): StopHandle
+
+watch with simple 
+
+<!-- Watchers : Special function which watches the state mutation and do some side effects -->
+<script setup>
+import { ref, watch } from 'vue'
+const x = ref(0)
+
+watch(x, (newX) => {
+    console.log(` X value is ${newX}`)
+})
+
+</script>
+<template>
+    <h1>Watchers</h1>
+    <button @click="x++">+</button>
+</template>
+
+
+Watch multiple properties
+..........................
+
+<script setup>
+import { ref, watch } from 'vue'
+const x = ref(0)
+const y = ref(0)
+const z = ref(0)
+
+watch([x, y, z], ([newX, newY, newZ]) => {
+    console.log(` X value is ${newX}`)
+    console.log(` Y value is ${newY}`)
+    console.log(` Z value is ${newZ}`)
+
+})
+
+</script>
+<template>
+    <h1>Watchers</h1>
+    <button @click="x++">X</button>
+    <button @click="y++">Y</button>
+    <button @click="z++">Z</button>
+
+</template>
+....................................................................................
+		How to watch literal object properties
+	
+
+Pass getter function which returns object property to be watched
+const getterFun=object.property	
+watch(getterFun,watcherFunc)
+
+<script setup>
+import { reactive, ref, watch } from 'vue';
+
+const counter = reactive({
+    up: 0,
+    down: 100
+})
+const increment = () => counter.up++
+const decrement = () => counter.down--
+
+
+//watch object particular property
+watch(() => counter.up, count => {
+    console.log(`Counter Inside Watch ${count}`)
+    if (count > 10) {
+        alert(' Volum is High')
+    }
+})
+
+</script>
+<template>
+    <h1>Up : {{ counter.up }}</h1>
+    <button @click="increment">+</button>
+    <h1>Down : {{ counter.down }}</h1>
+    <button @click="decrement">-</button>
+</template>
+
+...................................................................................
+				Deep watching
+..................................................................................
+if you watch the whole reactive object , it will create a deep watcher, the callback will triggered if any property the object changes
+
+
+<script setup>
+import { reactive, ref, watch } from 'vue';
+
+const counter = reactive({
+    up: 0,
+    down: 100
+})
+const x = ref(0);
+
+const increment = () => counter.up++
+const decrement = () => counter.down--
+
+
+//watch  whole reactive object
+//1st param is reactive object to be watched
+//2nd param is reactive to be returned
+//3rd param is only if there is different object
+watch(counter, () => {
+    console.log('watching...')
+    return counter
+}, (newValue, OldValue) => {
+    //immutable 
+    console.log(newValue, OldValue)
+    return counter
+}, { deep: true })
+
+
+</script>
+<template>
+    <h1>Up : {{ counter.up }}</h1>
+    <button @click="increment">+</button>
+    <h1>Down : {{ counter.down }}</h1>
+    <button @click="decrement">-</button>
+
+    <button @click="x++">{{ x }}</button>
+
+</template>
+...................................................................................
+			 watchEffect
+.....................................................................................
+
+watch is lazy, means called only if given state changes, watchEffect is executed atleast onece, and reexecuted whenever the property changes.
+<script setup>
+import { ref, watch, watchEffect } from 'vue'
+
+// bind ref as a variable
+let count = ref(0)
+
+// watch(count, () => {
+//     console.log(count.value)
+// })
+watchEffect(() => {
+    //inital ajax logic
+    console.log(count.value)
+})
+
+</script>
+<template>
+    <p>{{ count }}</p>
+    <button @click="count++">+</button>
+</template>
+..................................................................................
+			  watch vs watchEffect
+
+1.watch only tracks the explicitly watched sources. it wont track anything accessed inside the callback function. callback function called only if there is state mutation
+
+2.watchEffect , on the other hand, coimbines dedependcy tracking and side effect into onephase.called eargly without any state mutate starts.
+....................................................................................
+		          conditional Rendering
+....................................................................................
+
+
+v-if and v-else:
+................
+
+<script setup>
+import { computed, ref } from 'vue'
+
+const name = ref('admin')
+
+const isAdmin = computed(() => name.value === 'admin')
+
+</script>
+<template>
+    <div>
+        <!-- <h1 v-if="name === 'admin'">You are Admin</h1>
+        <h1 v-else>You are guest</h1> -->
+        <h1 v-if="isAdmin">You are Admin</h1>
+        <h1 v-else>You are guest</h1>
+    </div>
+</template>
+
+v-if takes boolean expression or truthy or falsy value, if it is true that block will be executed else, v-else block will be executed
+v-if and v-else should be in the same place.
+
+....................................................................................
+			v-if,v-else-if,else
+<!-- if, else..if with template -->
+
+<script setup>
+import { ref } from 'vue';
+const response = ref('ok')
+
+
+</script>
+<template>
+    <template v-if="response === 'ok'">
+        <h1>OK Title</h1>
+        <p>OK Paragraph 1</p>
+        <p>OK Paragraph 2</p>
+    </template>
+    <template v-else-if="response === 'something'">
+        <h1>Something Title</h1>
+        <p>Something Paragraph 1</p>
+        <p>Something Paragraph 2</p>
+    </template>
+    <template v-else>
+        <h1>else Title</h1>
+        <p>else Paragraph 1</p>
+        <p>else Paragraph 2</p>
+    </template>
+</template>
+......................................................................................
+
+        v-show
+
+Another option for conditionally displaying an element is v-show directive, which is eq to v-if.
+
+<h1 v-show="conditon">This is demo</h1>
+
+
+v-if vs v-show:
+
+v-if is "real" conditional rendering because it ensures that event listeners and child components inside the conditional block are properly destroyed and re-created during toggles.
+
+v-if is also lazy: if the condition is false on initial render, it will not do anything - the conditional block won't be rendered until the condition becomes true for the first time.
+
+In comparison, v-show is much simpler - the element is always rendered regardless of initial condition, with CSS-based toggling.
+
+Generally speaking, v-if has higher toggle costs while v-show has higher initial render costs. So prefer v-show if you need to toggle something very often, and prefer v-if if the condition is unlikely to change at runtime.
+
+
+
+<script setup>
+import { computed, ref } from 'vue'
+const toggle = ref(true)
+
+const showOrHide = () => {
+    toggle.value = !toggle.value
+}
+
+</script>
+<template>
+    <h1 v-show="toggle">Show</h1>
+    <button @click="showOrHide">Toggle</button>
+</template>
+
+..................................................................................
+			Props Pattern
+
+Props means property.
+The component receives data from the parent compoent , which is called property.
+Props pattern inspired from react, which is based on design pattern called "Single directional data flow model" /Uni directional data flow model.
+
+			<Parent>
+			   |
+			supply data 
+			   |
+ 		        <Child>
+
+
+
+How to pass props and how to receive in setup function?
+
+<script setup>
+import ParentComponent from './components/ParentComponent.vue';
+
+
+</script>
+<template>
+  <ParentComponent></ParentComponent>
+</template>
+
+components/ParentComponent.vue
+<script setup>
+import ChildComponent from './ChildComponent.vue';
+</script>
+<template>
+    <h1>Parent Compoent</h1>
+    <ChildComponent message="Hello"  ></ChildComponent>
+</template>
+
+components/ChildComponent.vue
+<script>
+export default {
+    props: ['message'],
+    setup(props) {
+        console.log(props)
+        return {
+            props
+        }
+    }
+}
+</script>
+<template>
+    <h1>Child Compoent</h1>
+    <h2>{{ props.message }}</h2>
+</template>
+
+..........................................
+
+props with setup attribute
+<script setup>
+const props = defineProps(['message'])
+</script>
+<template>
+    <h1>Child Compoent</h1>
+    <h2>{{ props.message }}</h2>
+</template>
+		
+.....................................................................................
+				 Prop Types
+
+
+1.static prop
+	props value are passed only one time , hardcoded values
+2.dynamic prop
+        props values are passed during rendering, dynamailly you can pass value.
+  state as prop: the state of compoent can be passed as prop to another props
+
+Component design principles:
+
+1.The component may have only state and api to mutate
+   container components
+2.The component may only display state
+   presentational components
+
+Dynamic props syntax:
+
+ <Child message="Hello"></Child> - Static props
+
+ <Child :message="Variable"></Child> -Dynamic props
+
+
+eg:
+
+<script setup>
+import Counter from './components/Counter.vue';
+
+</script>
+<template>
+<Counter></Counter>
+</template>
+
+
+components/counter.vue
+
+<script setup>
+import { ref } from 'vue';
+import CounterDisplay from './CounterDisplay.vue';
+//state
+const counter = ref(0)
+const increment = () => {
+    counter.value++
+}
+</script>
+<template>
+    <h2>Counter</h2>
+    <CounterDisplay :counter="counter"></CounterDisplay>
+    <button @click="increment">+</button>
+</template>
+
+
+components/counterdisplay.vue
+<script setup>
+const props = defineProps(['counter'])
+</script>
+<template>
+    <h2>Counter Display</h2>
+    <h3>Counter : {{ props.counter }}</h3>
+</template>
+
+....................................................................................
+				Default Props
+
+what if i dont supply any props, then it will be undefined
+
+With props  supplied
+ <DyamicProp :name="name" :age="age" :status="status"></DyamicProp>
+
+without any props supplied
+<DyamicProp></DyamicProp>
+   here all properties will be undefined.
+
+How to set default props.
+with object literal syntax.
+
+App.vue
+<script setup>
+import ParentComponent from './components/ParentComponent.vue';
+</script>
+<template>
+  <ParentComponent></ParentComponent>
+</template>
+
+compoennts/ParentComponent.vue
+<script setup>
+import ChildComponent from './ChildComponent.vue';
+</script>
+<template>
+    <h1>Parent Compoent</h1>
+    <!-- <ChildComponent message="hai"  ></ChildComponent> -->
+    <ChildComponent></ChildComponent>
+    <ChildComponent message="hello"></ChildComponent>
+
+</template>
+
+components/ChildComponent.vue
+<!-- <script>
+export default {
+    props: ['message'],
+    setup(props) {
+        console.log(props)
+        return {
+            props
+        }
+    }
+}
+</script> -->
+<script setup>
+// const props = defineProps(['message'])
+//default props
+const props = defineProps({
+    message: {
+        default: 'default Message'
+    }
+})
+</script>
+<template>
+    <h1>Child Compoent</h1>
+    <h2>{{ props.message }}</h2>
+</template>
+....................................................................................
+....................................................................................
+			 Property Validation
+....................................................................................
+
+Some times i want to enforce the property data type validation, which is only for runtime vertification.
+
+eg:
+ i have property called age
+ i need to define rule for age that age must be number,it should not be string.
+
+eg:
+  defineProps({
+     age:Number,  
+     id: [Number,String] // can be string or can be number
+     name: {
+      type:String
+      required:true,
+      default:'name'
+     },
+    status: {
+	validator(value){
+	  return ['OK','NotOk','Success','Failure'].includes(value)
+       }
+    }
+ })
+
+Runtime Types:
+1.String
+2.Number
+3.Boolean
+4.Array
+5.Object
+6.Date
+7.Function
+8.Symbol
+
+eg:
+<script setup>
+import { ref } from 'vue';
+import PropValidation from './PropValidation.vue';
+
+const name = ref('Subramanian')
+const age = ref(18)
+const status = ref(true)
+</script>
+<template>
+    <h1>Parent Component</h1>
+   <PropValidation></PropValidation>
+</template>
+<script setup>
+const props = defineProps({
+    name: {
+        type: String,
+        default: 'name',
+        required: true
+    },
+    age: {
+        type: Number,
+        default: 1
+    }
+})
+</script>
+<template>
+    <h1>Property validation</h1>
+    <div>
+        <p>Name {{ props.name }} Age : {{ props.age }}</p>
+    </div>
+</template>
+
+if any validation violation, the vue will give warning only, it will not stop rendering 
+
+Vue warn]: Missing required prop: "name" 
+  at <PropValidation> 
+  at <Parent> 
+  at <App>
+.....................................................................................
+...................................................................................
+				Boolean Casting
+
+props with boolean type has some special casting rules to mimic the behaviour of native boolean attributes.
+
+eg: In the dom, these attributes by default has false values
+ <div disabled> ==  <div disabled=false>
+ <div hidden> 
+
+In the similar pattern we can supply boolean values to the component,default value is true.
+
+<PropValidation status></PropValidation> => true
+
+
+<PropValidation></PropValidation> => false
+
+Note: for booleans we dont need to supply default value,if you want  you can 
+...................................................................................
+
+App.vue
+<script setup>
+import { ref } from 'vue';
+import PropValidation from './components/PropValidation.vue';
+
+const name = ref('Subramanian')
+const age = ref(18)
+const status = ref(false)
+
+</script>
+<template>
+    <PropValidation :name="name" :age="age" :status="status"></PropValidation>
+    <PropValidation :age="age" :status="status"></PropValidation>
+    <PropValidation :age="age" status></PropValidation>
+
+</template>
+
+PropertyValidation.vue
+<script setup>
+const props = defineProps({
+    name: {
+        type: String,
+        default: 'default Name',
+        required: true
+    },
+    age: {
+        type: Number,
+        default: 1
+    },
+    status: {
+        type: Boolean
+    }
+})
+</script>
+<template>
+<h1>Property validation</h1>
+    <div>
+        <p>Name {{ props.name }} Age : {{ props.age }} status :{{props.status ? "ok" :"Not ok"}}</p>
+    </div>
+</template>
+
+...................................................................................
+...................................................................................
+		...................................................................................
+			  One way data Flow
+
+All props form a  oneway data flow model, child component cant update the props 
+
+                         "Props are read only"
+
+
+
+Parent.vue
+<script setup>
+import ChildPropMutation from './ChildPropMutation.vue';
+</script>
+<template>
+    <h1>Parent Component</h1>
+ <ChildPropMutation name="Subramanian"></ChildPropMutation>
+</template>
+
+ChildPropMutation.vue
+
+<script setup>
+const props = defineProps({
+    name: String
+})
+//update the prop
+props.name = "Foo"
+</script>
+<template>
+    <h1>Prop Mutation {{props.name}}</h1>
+</template>
+
+You will get warning:
+Set operation on key "name" failed: target is readonly. Proxy {name: 'Subramanian'}
+
+=>Props cant be modified by child components, which never triggers render cycle
+...................................................................................
+		 The prop can become state to another component
+...................................................................................
+
+The prop can be used to inital value; the child component wants to use it as a local data property afterwards.
+
+App.vue
+<script setup>
+import { ref } from 'vue';
+import CounterProp from './components/CounterProp.vue';
+
+const initalCounter = ref(10)
+</script>
+
+<template>
+    <CounterProp :initalCounter="initalCounter"></CounterProp>
+</template>
+
+components/CounterProp.vue
+<script setup>
+import { ref } from 'vue';
+const props = defineProps(['initalCounter'])
+//prop as state : just read prop not update
+const counter = ref(props.initalCounter)
+</script>
+<template>
+    <h1>Counter State {{ counter }}</h1>
+    <h1>Counter Props {{ props.initalCounter }}</h1>
+    <button @click="counter++">+</button>
+</template>
+.....................................................................................
+				Component Communications
+
+Components can communicate each other in order to share "data".
+
+There are three patterns
+
+1.parent to child
+    via props pattern we can share data from the parent to child
+2.child to parent
+   Custom Events- Event emitter pattern
+3.across components
+    Via State management libs - Vuex/Pionon
+
+
+.....................................................................................
+				 Event Emitter Pattern
+.....................................................................................
+
+Child component can emit event with data, where as parent component can listen for data.
+
+Event Emitter syntax:
+
+In the child component
+
+const emit = defineEmits(['change', 'delete'])
+
+
+Child Component
+<script setup>
+import { ref } from 'vue'
+const emit = defineEmits(['onRequest', 'onCounter'])
+const data = ref('Hello,I am from child')
+const counter = ref(0)
+
+//data can be emitted inside script via listener
+const onSend = () => {
+    //emit data
+    emit('onRequest', data.value)
+}
+
+</script>
+<template>
+    <hr />
+    <div>
+        <h1>Child</h1>
+        <button @click="onSend">Send To parent</button>
+        <!-- Using inline event listener -->
+        <button @click="$emit('onRequest', 'Hello!')">Send To parent</button>
+        <button @click="$emit('onCounter', counter++)">+</button>
+
+    </div>
+</template>
+
+
+
+
+
+Parent Component
+<script setup>
+import { ref } from 'vue';
+import ChildEventEmitter from './ChildEventEmitter.vue';
+
+const message = ref('')
+const counter = ref(0)
+
+//listener , which listens for child component
+const getData = data => {
+    console.log(data)
+    //update
+    message.value = data
+}
+const getCounter = data => {
+    counter.value = data;
+}
+
+</script>
+
+<template>
+    <h1>Parent Compoent</h1>
+    <h2>Data From Child {{ message }} {{ counter }}</h2>
+    <!-- attach child compoent listener -->
+    <ChildEventEmitter @on-request="getData" @on-counter="getCounter">
+    </ChildEventEmitter>
+</template>
+......................................xxxxxxxxxxxxxxx...............................
+				Fall through Attributes
+		Sending HTML attributes from Parent Component to child compoent
+
+Attribute inheritance:
+.....................
+
+A fallthrough attribute is an attribute or v-on listeners that is passed to component but it is not explicitly declared in the receiving component(child components) via props or emits
+
+
+ParentComponent
+<!-- DOM attributes as prop -->
+<script setup>
+import MyButton from './components/MyButton.vue';
+</script>
+<template>
+    <MyButton  class="fancy-btn" id="mybutton"></MyButton>
+</template>
+<style>
+.fancy-btn {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+<!-- you can add one more script script block -->
+<script>
+export default {
+    created() {
+        console.log(this.$attrs)
+    }
+}
+</script>
+<script setup>
+
+</script>
+<template>
+    <button>MyButton</button>
+    <div>{{ $attrs }}</div>
+</template>
+...................................................................................
+			 Can i override the dom attributes in the child component
+
+Generally not possible to override. 
+It is possible with help of "<style scoped"> attribute
+
+App.vue
+<!-- DOM attributes as prop -->
+<script setup>
+import MyButton from './components/MyButton.vue';
+</script>
+<template>
+    <MyButton class="fancy-btn"></MyButton>
+</template>
+<style>
+.fancy-btn {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+
+components/MyButton.vue
+<script setup>
+</script>
+<template>
+    <button>MyButton</button>
+</template>
+<style>
+.fancy-btn {
+    color: red
+}
+</style>
+
+Here the color "red" will not be applied
+..................................................................................
+			can we add new "class" to the component 
+
+One class supplied from the parent , another is from the component itself.
+
+Yes we can add.
+
+eg:
+<!-- DOM attributes as prop -->
+<script setup>
+import MyButton from './components/MyButton.vue';
+</script>
+<template>
+    <MyButton class="fancy-btn"></MyButton>
+</template>
+<style>
+.fancy-btn {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+
+components/MyButton.vue
+<script setup>
+</script>
+<template>
+    <button class="large">MyButton</button>
+</template>
+<style>
+/* .fancy-btn {
+    color: red
+} */
+.large {
+    color: rgb(228, 7, 7);
+    background: linear-gradient(315deg, #42d392 25%, #647eff);
+    border: none;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+</style>
+
+output:
+<button class="large fancy-btn">MyButton</button>
+...................................................................................
+.....................................................................................
+			 How to prevent Attribute inheritance
+
+// script without setup attribute
+<script>
+  export default {
+    inheritAttrs:false
+  }
+</script>
+<script setup>
+
+</script>
+
+Here, we can add two script block, one for configuration and another for regular javascript code.
+
+App.vue
+
+<!-- DOM attributes as prop -->
+<script setup>
+import MyButton from './components/MyButton.vue';
+</script>
+<template>
+    <MyButton class="fancy-btn"></MyButton>
+</template>
+<style>
+.fancy-btn {
+    background-color: #4CAF50;
+    /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+}
+</style>
+
+components/MyButton.vue
+
+<script>
+export default {
+    inheritAttrs: false
+}
+</script>
+
+<script setup>
+
+</script>
+<template>
+    <button class="large">MyButton</button>
+</template>
+<style>
+/* .fancy-btn {
+    color: red
+} */
+.large {
+    color: rgb(228, 7, 7);
+    background: linear-gradient(315deg, #42d392 25%, #647eff);
+    border: none;
+    padding: 5px 10px;
+    margin: 5px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+</style>
+
+Can we write code without extra script block?
+
+Yes, via special api called "hooks".
+
+Can we read attributes inside script block?
+
+Yes, via special api called "hooks"
+
+We can read attributes via "context api" 
+.....................................................................................
+.....................................................................................					Slots -Component/DOM Element as Prop
+....................................................................................
+
+How to represent component?
+
+<MyComponent></MyComponent>
+<MyComponent/>
+
+
+<MyComponent>
+    you are sending component /html elements  => slot content
+</MyComponent>
+
+
+App.vue -Parent Component
+<script setup>
+import ChildSlot from './components/ChildSlot.vue';
+import Greeter from './components/Greeter.vue';
+
+</script>
+<template>
+    <!-- <ChildSlot/> -->
+    <ChildSlot>
+        <!-- HTML Element as prop -->
+        <h2>Hello</h2>
+        <h2>Hello</h2>
+        <h2>Hello</h2>
+        <h2>Hello</h2>
+        <h2>Hello</h2>
+    </ChildSlot>
+    <ChildSlot>
+        <!-- Component as prop -->
+        <Greeter />
+    </ChildSlot>
+</template>
+
+ChildSlot.vue
+<script setup>
+
+</script>
+<template>
+    <div>
+        <h1>ChildSlot</h1>
+        <slot></slot>
+    </div>
+</template>
+
+
+Here "<slot>" is built in component / wrapper component, which wraps child component.
+
+....................................................................................
+...................................................................................
+				Fallback Content
+
+Eg:
+
+<MyComponent>
+    some content
+</MyComponent>
+
+Mycomponent.vue
+
+<template>
+  <div>
+       <slot> fallback content goes here</slot>
+  </div>
+</template>
+
+
+<script setup>
+import ChildSlotDefault from "./components/ChildSlotDefault.vue";
+
+</script>
+<template>
+    <ChildSlotDefault>
+        <h1>Hello</h1>
+    </ChildSlotDefault>
+    <!-- No children -->
+    <ChildSlotDefault/>
+</template>
+
+
+App.vue
+<script setup>
+import ChildSlotDefault from "./components/ChildSlotDefault.vue";
+
+</script>
+<template>
+    <ChildSlotDefault>
+        <h1>Hello</h1>
+    </ChildSlotDefault>
+    <!-- No children -->
+    <ChildSlotDefault/>
+</template>
+
+components/ChildSlotDefault.vue
+
+<script setup>
+
+</script>
+<template>
+    <div>
+        <slot>
+            <h3>Fallback</h3>
+        </slot>
+    </div>
+</template>
+
+.....................................................................................
+			     Muliti Slots
+.....................................................................................
+
+Can i have multi slot?
+ Yes we can have
+
+Without slot
+<Layout>
+  <Header/>
+  <Body/>
+  <Footer/>
+</Layout>
+
+<Layout>
+  <Header>
+    <!---Header information--->
+  </Header>
+  <Body>
+    <!---Body information--->
+  </Body>
+  <Footer>
+    <!---Footer information--->
+  </Footer>
+</Layout>
+....................................................................................
+
+We can achive multi slots using named slots concept
+
+Each slot can have name which can be further mapped in the parent compoent
+
+child
+<slot name="header"></slot>
+
+parent
+<template v-slot:header>
+  
+</template>
+..............................
+
+eg:
+
+App.vue
+
+<script setup>
+import Layout from './components/Layout.vue';
+</script>
+<template>
+ <h1>Vue Application</h1>
+    <hr />
+    <Layout>
+        <template v-slot:header>
+            <h1>Header</h1>
+        </template>
+        <template v-slot:main>
+            <p>This is body</p>
+        </template>
+        <template v-slot:footer>
+            <h1>Footer</h1>
+        </template>
+    </Layout>
+</template>
+
+components/Layout.vue
+<script setup>
+</script>
+<template>
+    <h1>Layout</h1>
+    <hr />
+    <div class="container">
+        <header>
+            <slot name="header">
+                <h1>default Header</h1>
+            </slot>
+        </header>
+        <main>
+            <slot name="main">
+                <p>default content</p>
+            </slot>
+        </main>
+        <footer>
+            <slot name="footer">
+                <h2>default footer</h2>
+            </slot>
+        </footer>
+    </div>
+</template>
+
+short cuts to refer slots:
+
+without v-slot directive , we can use #name 
+
+<Layout>
+        <template #header>
+            <h1>Header</h1>
+        </template>
+        <template #main>
+            <p>This is body</p>
+        </template>
+        <template #footer>
+            <h1>Footer</h1>
+        </template>
+    </Layout>
+....................................................................................
+				Default Slots
+.....................................................................................
+Default slot:
+     The slot without name is called default slot
+Default slot:
+     The slot without name is called default slot
+child
+<template>
+    <h1>Layout</h1>
+    <hr />
+    <div class="container">
+        <header>
+            <slot name="header">
+                <h1>default Header</h1>
+            </slot>
+        </header>
+        <!-- Default slot : without any name -->
+        <main>
+            <slot>
+                <p>default content</p>
+            </slot>
+        </main>
+        <footer>
+            <slot name="footer">
+                <h2>default footer</h2>
+            </slot>
+        </footer>
+    </div>
+</template>
+
+parent
+<template #default>
+
+</template>
+
+eg:
+
+<template>
+    <Layout>
+        <template #header>
+            <h1>Header</h1>
+        </template>
+        <template #default>
+            <p>This is body</p>
+        </template>
+        <template #footer>
+            <h1>Footer</h1>
+        </template>
+    </Layout>
+</template>
+....................................................................................
+				Dynamic slots
+
+
+The slot name can be dynamic
+
+static slot name
+
+<template v-slot:header>
+<template #header>
+
+Dynamic slot name
+
+const header = ref('header')
+
+<template v-slot:[header]>
+<template #[header]>
+
+
+eg:
+<script setup>
+import { ref } from 'vue';
+import Layout from './slots/Layout.vue';
+
+const header = ref('header')
+
+</script>
+<template>
+  <Layout>
+        <!-- <template v-slot:[header]>
+            <h1>Header</h1>
+        </template> -->
+        <template #[header]>
+            <h1>Header</h1>
+        </template>
+        <template #default>
+            <p>This is body</p>
+        </template>
+        <template #footer>
+            <h1>Footer</h1>
+        </template>
+    </Layout>
+</template>
+
+				Slot Scopes
+
+Slot scopes enable data accessiblity for parent and child
+
+There are two scopes:
+1.Render scope
+2.Scoped slots
+
+Render Scope:
+
+=>The slot content has acccess to the data scope of the parent compoent, since it is defined in the parent component 
+
+=>slot content does not have access to the child compoent's data.
+
+     "As rule of thumb Every thing in the parent template is compiled in 
+      Parent scope; every thing is compiled in the child template in the child
+      scope"
+
+Scoped Slot:
+...........
+   if you want to access data in the parent and child scope.
+  
+  "If parent component want to access child data(state) , the child can pass data 
+   to parent via "slot" when rendering it.
+   
+   Slot can act as bridge between child and parent.
+
+Child:
+
+ <slot :name="name" :age="age"...>
+.....................................................................................
+eg:
+
+App.vue
+<script setup>
+import ScopeSlot from './components/ScopeSlot.vue'
+</script>
+<template>
+    <h1>Vue Application</h1>
+    <hr />
+    <!--Scoped Slots : Sending data from the child to Parent  -->
+    <ScopeSlot v-slot="slotProps">
+        {{ slotProps.message }}
+    </ScopeSlot>
+</template>
+
+components/scopeSlot.vue
+<script setup>
+import { ref } from 'vue';
+const message = ref('Hello ,  How are you')
+</script>
+<template>
+    <div>
+        <!-- Send data to the parent compoent -->
+        <slot :message="message"></slot>
+    </div>
+</template>
+.....................................................................................
+			     Depedency Injection:Composition API
+.....................................................................................
+	  
+Prop Driling:
+
+ When you pass data from the parent component to child, from child to its child and so on, at each level you have to pass props manually
+
+                        Root
+			 |
+			props
+			 |
+			Child1
+			 |props
+			Child2
+			 |props
+			Child3
+			 |props
+		        Child-N
+
+Parent - App.vue
+<script setup>
+import { ref } from 'vue';
+import Child1 from './propsdrilling/Child1.vue';
+const message = ref('Hello')
+</script>
+<template>
+    <h1>Root</h1>
+    <Child1 :message="message" />
+</template>
+
+Child1.vue
+<script setup>
+import Child2 from './Child2.vue';
+const props = defineProps(['message'])
+</script>
+<template>
+    <h1>Child 1</h1>
+    <Child2 :message="props.message" />
+</template>
+
+Child2.vue
+<script setup>
+import Child3 from './Child3.vue';
+const props = defineProps(['message'])
+
+</script>
+<template>
+    <h1>Child 2</h1>
+    <Child3 :message="props.message" />
+</template>
+
+Child3.vue
+<script setup>
+const props = defineProps(['message'])
+
+</script>
+<template>
+    <h1>Child 3 {{ props.message }}</h1>
+</template>
+
+What if  i want to access the data which is supplied in the root component into the deepest child component.
+
+We can solve props drilling with "provide and inject".
+
+Parent component can act as dependency provider to all its decendants.
+
+Any component in the decendants tree, regardless of how deep it is, can inject dependencies provided by components up in its parent chain.
+
+  			Root -  Provide
+			 |        |
+			props     |
+			 |        |
+			Child1    |
+			 |        |
+			Child2    |
+			 |        |
+			Child3    |
+			 |        |
+		        Child-N - Inject
+
+
+provide syntax:
+
+ provide(key,value)
+
+How to access provided value:
+ inject(key) -value
+ inject(key,defaultValue)
+
+
+eg:
+How to pass single variable and How to object ? and how to make it reactive?
+
+..............................................................................	
+			  Depedency Injection - Provide/Inject
+..............................................................................			  
+Prop Driling:
+
+ When you pass data from the parent component to child, from child to its child and so on, at each level you have to pass props manually
+
+                        Root
+			 |
+			props
+			 |
+			Child1
+			 |props
+			Child2
+			 |props
+			Child3
+			 |props
+		        Child-N
+
+Parent - App.vue
+<script setup>
+import { ref } from 'vue';
+import Child1 from './propsdrilling/Child1.vue';
+const message = ref('Hello')
+</script>
+<template>
+    <h1>Root</h1>
+    <Child1 :message="message" />
+</template>
+
+Child1.vue
+<script setup>
+import Child2 from './Child2.vue';
+const props = defineProps(['message'])
+</script>
+<template>
+    <h1>Child 1</h1>
+    <Child2 :message="props.message" />
+</template>
+
+Child2.vue
+<script setup>
+import Child3 from './Child3.vue';
+const props = defineProps(['message'])
+
+</script>
+<template>
+    <h1>Child 2</h1>
+    <Child3 :message="props.message" />
+</template>
+
+Child3.vue
+<script setup>
+const props = defineProps(['message'])
+
+</script>
+<template>
+    <h1>Child 3 {{ props.message }}</h1>
+</template>
+
+What if  i want to access the data which is supplied in the root component into the deepest child component.
+
+We can solve props drilling with "provide and inject".
+
+Parent component can act as dependency provider to all its decendants.
+
+Any component in the decendants tree, regardless of how deep it is, can inject dependencies provided by components up in its parent chain.
+
+  			Root -  Provide
+			 |        |
+			props     |
+			 |        |
+			Child1    |
+			 |        |
+			Child2    |
+			 |        |
+			Child3    |
+			 |        |
+		        Child-N - Inject
+
+
+eg:
+How to pass single variable and How to object ? and how to make it reactive?
+
+Parent-App.vue
+
+<script setup>
+import { ref, provide } from 'vue';
+import Child1 from './propsdrilling/Child1.vue';
+
+const message = ref('Hello')
+//dynamic provider
+const counter = ref(0)
+//provider data
+// provide('name', 'Subramanian')
+// provide('counter', counter)
+//short cut
+provide('info', {
+    counter, message
+})
+</script>
+<template>
+    <h1>Root</h1>
+    <Child1 :message="message" />
+    <button @click="counter++">+</button>
+</template>
+
+....
+
+Child Level
+<script setup>
+import { inject } from 'vue'
+const props = defineProps(['message'])
+
+// const name = inject('name', 'default Name')
+// const counter = inject('counter', 0)
+const { name, counter } = inject('info')
+</script>
+<template>
+    <h1>Child 3 {{ props.message }}</h1>
+    <h1>Global Data {{ name }} {{ counter }}</h1>
+
+</template>
+....................................................................................
+			
+Provide and inject is used to share data in the component tree.
+Provide and inject can also be used to share data globally.
+
+How to share data globally?
+ with help of application/app object 
+
+app.provide
+...................................................................................
+			App Level Data sharing
+
+You have to provide via app object.
+
+app.provide('company','google')
+
+main.js
+import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App)
+    .provide('company', 'google')
+    .mount('#app')
+
+
+In any component:
+<script setup>
+import { inject } from 'vue'
+const props = defineProps(['message'])
+
+// const name = inject('name', 'default Name')
+// const counter = inject('counter', 0)
+const { name, counter } = inject('info')
+const company = inject('company')
+</script>
+<template>
+    <h1>Child 3 {{ props.message }}</h1>
+    <h1>Tree level Global Data {{ name }} {{ counter }}</h1>
+    <h1>App level Global Data {{ company }}</h1>
+
+</template>
+.....................................................................................
+			Composables(Hooks in React)
+....................................................................................	
+
+Composable is just plain javascript function that separates resuable stateful logic
+(logic which has state).
+
+When we build apps, either server side or client, we need some biz logic has to be reused across the application.
+
+eg:
+  Date formater, String utilities.
+
+Use Case :
+ if we are implementing the mouse tracking functionality inside a component.
+ eg i want to track x and y coordinates in a component , the same feature if you want in another component, you have to repeat that logic again thats where we have concept called composables.
+
+eg:
+<!-- Mouse Tracking -->
+<script setup>
+import { onMounted, onUnmounted, ref } from 'vue';
+
+
+const x = ref(0)
+const y = ref(0)
+
+const update = event => {
+    x.value = event.pageX
+    y.value = event.pageY
+}
+//Life cycle api 
+onMounted(() => {
+    //register mouse move listener
+    window.addEventListener('mousemove', update)
+})
+onUnmounted(() => {
+    window.removeEventListener('mousemove', update)
+})
+
+</script>
+<template>
+<h1>X : {{x}} Y: {{y}}</h1>
+</template>
+
+What if i want the same functionality in another component, you have to duplicate the code... "Dont do that" - Composable
+Here, we write logic to get Mouse positions in side app component, what if i want the same logic again inside another component.
+
+Solution is : Composable.
+
+src/composables/mousetracker.js
+
+import { ref, onMounted, onUnmounted } from 'vue'
+
+//all composable function starts with "use" convention only/ not synatx
+export function useMouseTracker() {
+    //state
+    const x = ref(0)
+    const y = ref(0)
+    //logic
+    function update(event) {
+        console.log('moving....')
+        x.value = event.pageX
+        y.value = event.pageY
+    }
+    //Life cycles to register dom events
+    onMounted(() => {
+        //register mouse listener
+        window.addEventListener('mousemove', update)
+    })
+    onUnmounted(() => {
+        //register mouse listener
+        window.removeEventListener('mousemove', update)
+    })
+    //return state as object and even logic : you can return any thing but should be encapsulated inside object
+    return {
+        x,
+        y
+    }
+
+}
+
+App.vue
+ <script setup>
+//import composable api
+import { useMouseTracker } from './composables/mousetracker.js'
+//invoke composable apis
+const { x, y } = useMouseTracker()
+
+</script>
+<template>
+    <h1>Mouse Position x: {{ x }} y: {{ y }}</h1>
+</template>
+....................................................................................
+			AJAX Calls in Vue
+...................................................................................
+<script setup>
+import { ref, onMounted } from 'vue'
+//state variables
+const data = ref(null)
+const error = ref(null)
+
+////function api
+function fetchData() {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+        .then(res => res.json())
+        .then(todos => {
+            data.value = todos
+            console.log(data.value)
+        })
+        .catch(err => {
+            error.value = err
+        })
+}
+
+onMounted(() => {
+    //call fetch api
+    fetchData();
+})
+</script>
+<template>
+    <div>
+        <h1>Todo app</h1>
+        <div v-if="error">Opps! Error Encountered : {{ error.message }}</div>
+        <div v-else-if="data">
+            <div v-for="todo of data">
+                <p>{{ todo.title }}</p>
+            </div>
+        </div>
+        <div v-else>
+            <h1>Loading...</h1>
+        </div>
+    </div>
+</template>
+
+How to write reusable ajax logic ?
+ Composable api
+
+composable/fetch.js
+import { ref, onMounted } from 'vue'
+
+export function useFetch(url) {
+    //state variables
+    const data = ref(null)
+    const error = ref(null)
+    //function api
+    async function fetchData() {
+        // fetch(url)
+        //     .then(res => res.json())
+        //     .then(output => {
+        //         data.value = output
+        //     })
+        //     .catch(err => {
+        //         error.value = err
+        //     })
+        try {
+           // const output = await (await fetch(url)).json()
+          //  const output = await res.json()
+            data.value = await (await fetch(url)).json()
+        }
+        catch (err) {
+            error.value = err
+        }
+    }
+
+    onMounted(() => {
+        //call fetch api
+        fetchData();
+    })
+    //return 
+    return {
+        data,
+        error
+    }
+
+}
+
+App.vue
+<script setup>
+import { useFetch } from './composables/fetch.js'
+
+//with destructuring
+const { data, error } = useFetch('https://jsonplaceholder.typicode.com/todos')
+//without destructuring
+// const todos = useFetch('https://jsonplaceholder.typicode.com/todos')
+
+</script>
+<template>
+    <div>
+        <h1>Todo app</h1>
+        <div v-if="error">Opps! Error Encountered : {{ error.message }}</div>
+        <div v-else-if="data">
+            <div v-for="todo of data">
+                <p>{{ todo.title }}</p>
+            </div>
+        </div>
+        <div v-else>
+            <h1>Loading...</h1>
+        </div>
+    </div>
+
+</template>
+
+Now vue starts using lot of composable apis, which ias every growing....
+https://vueuse.org/
+
+eg:
+<script setup>
+import { useFetch } from './composables/fetch.js'
+import { useTitle } from '@vueuse/core'
+
+
+const title = useTitle('New Title', { titleTemplate: '%s | My Awesome Website' })
+
+//with destructuring
+const { data, error } = useFetch('https://jsonplaceholder.typicode.com/todos')
+//without destructuring
+// const todos = useFetch('https://jsonplaceholder.typicode.com/todos')
+
+
+</script>
+<template>
+    <div>
+        <h1>Todo app</h1>
+        <div v-if="error">Opps! Error Encountered : {{ error.message }}</div>
+        <div v-else-if="data">
+            <div v-for="todo of data">
+                <p>{{ todo.title }}</p>
+            </div>
+        </div>
+        <div v-else>
+            <h1>Loading...</h1>
+        </div>
+    </div>
+
+</template>
+.................................**************************..........................
+....................................................................................
+			  Form Handling
+.....................................................................................
+
+Form Controls:
+1.text / password
+2.Multi line text
+3.checkbox
+4.radio
+5.select
+
+How to get input from the keyboard via form controls and bind in the ui
+
+Syntax:
+
+<input @input="listener" >
+
+<script setup>
+import { ref } from 'vue';
+const name = ref("defaultName")
+//listner
+function getInput(event) {
+    //read value from the text
+    //  console.log(event.target.value)
+    name.value = event.target.value
+}
+</script>
+<template>
+    <div>
+        <h2>{{ name }}</h2>
+        <input @input="getInput" />
+    </div>
+</template>
+
+Two way data binding:
+
+When ever user interacts via typing in the text box, the reactive variable is updated,
+when ever reactive variable is updated, the UI is rerendered.
+
+:value property  is used to initalize the default reactive state variable in side text box
+<script setup>
+import { ref } from 'vue';
+const name = ref("defaultName")
+//listner
+function getInput(event) {
+    //read value from the text
+    //  console.log(event.target.value)
+    name.value = event.target.value
+}
+</script>
+<template>
+    <div>
+        <h2>{{ name }}</h2>
+        <input @input="getInput" :value="name" />
+    </div>
+</template>
+
+.....................................................................................
+				How to reduce listeners
+.....................................................................................
+
+When we have more input fields, we need to write more event listeners, which can be avoided in two ways
+
+1.inline event listener
+<script setup>
+import { ref } from 'vue';
+const name = ref("defaultName")
+
+</script>
+<template>
+    <div>
+        <h2>{{ name }}</h2>
+        <input @input="event => name = event.target.value" :value="name" />
+    </div>
+</template>
+
+2.Using v-model directive
+
+ ->It removes explicit event binding ,which attaches the default event handler and event automatically.
+ 
+
+<script setup>
+import { ref } from 'vue';
+const name = ref("defaultName")
+
+</script>
+<template>
+    <div>
+        <h2>{{ name }}</h2>
+        <input v-model="name" />
+    </div>
+</template>
+
+v-model directive can be used on other input controls as well.
+
+textarea
+  it uses value property and input event
+checkbox
+radio
+  It uses checked property and change event
+select
+ It uses value property and input event 
+
+TextArea:
+..........
+
+Using Text area , we can get multi line input
+<script setup>
+import { ref } from 'vue';
+
+const mail = ref('')
+
+</script>
+<template>
+  
+    <div>
+        <h2>{{ mail }}</h2>
+        <label id="mail">Mail</label>
+        <textarea v-model="mail" />
+    </div>
+</template>
+
+Checkbox 
+
+Single Checkbox:
+<script setup>
+import { ref } from 'vue';
+const checked = ref(true)
+
+</script>
+<template>
+    <div>
+        <input type="checkbox" id="checkbox" v-model="checked" />
+        <label for="checkbox">{{checked}}</label>
+    </div>
+</template>
+................................................................................
+Multi Checkbox value collection:
+...............................
+
+<script setup>
+import { ref } from 'vue';
+
+const values = ref([])
+
+</script>
+<template>
+    <div>
+        <h1>Course Information</h1>
+
+        <input type="checkbox" id="frontend" value="frontEnd" v-model="values" />
+        <label for="frontend">Front End</label>
+        <input type="checkbox" id="backend" value="BackEnd" v-model="values" />
+        <label for="backend">Back End</label>
+        <input type="checkbox" id="devops" value="Dev Ops" v-model="values" />
+        <label for="devoops">Dev Ops</label>
+    </div>
+    <div>
+        {{ values }}
+    </div>
+</template>
+....................................................................................
+Radio Button:
+............
+<script setup>
+import { ref, computed } from 'vue';
+
+const choice = ref("Male")
+
+
+</script>
+<template>
+    <div>
+        <h1>Select any One</h1>
+        <input type="radio" id="Male" value="Male" checked v-model="choice" />
+        <label for="Male">Male</label>
+        <input type="radio" id="Female" value="Female" v-model="choice" />
+        <label for="Female">FeMale</label>
+    </div>
+    <div>
+        {{ choice }}
+    </div>
+</template>
+.................................................................................
+
+Select:
+<script setup>
+import { ref, computed } from 'vue';
+
+const selected = ref('')
+const courses = ref(["Vue", "React", "Angular", "MicroServices"])
+const selectedCourse = ref('')
+</script>
+<template>
+    <div>
+        <select v-model="selected">
+            <option disabled value>Select Your choice</option>
+            <option>Vue</option>
+            <option>React</option>
+            <option>Angular</option>
+            <option>MicroServices</option>
+        </select>
+    </div>
+    <div>
+        {{ selected }}
+    </div>
+    <hr />
+    <div>
+        <select v-model="selectedCourse">
+            <option disabled value>Select Your choice</option>
+            <option v-for="course of courses">{{ course }}</option>
+        </select>
+    </div>
+    <div>
+        {{ selectedCourse }}
+    </div>
+</template>
+.................................................................................
+.................................................................................
+Value Bindings -vue custom attributes:
+....................................
+
+v-model=""
+true-value="yes" //replace true or false value into meaningfull values 
+false-value="no"
+
+<script setup>
+import { ref } from 'vue';
+const toggle = ref(true)
+const truthyValue="Yes"
+</script>
+<template>
+    <div>
+        <input type="checkbox" :true-value="truthyValue" checked false-value="no" v-model="toggle" />
+        <label for="Toggle">Toggle</label>
+    </div>
+    <div>
+        <!-- {{toggle ? "Yes" : "No"}} -->
+        {{ toggle }}
+    </div>
+</template>
+
+For Radio button
+
+:true-value=""
+
+For Select options
+
+:value="{text: 'some text'}"
+....................................................................................
+				Modifiers
+
+if you want to change v-model behaviour, we can use modifiers
+
+<input v-model="variable">
+  Here Vue fires input event for every keystroke.
+What if i want to add "change" event instead of input event
+
+<input v-model.lazy="variable">
+                |
+       fires change event
+
+Modifiers:
+
+v-model.lazy -  fires change event
+v-model.number -  converts strings into number
+v-model.trim -  trims the leading strings
+<script setup>
+import { ref } from 'vue';
+const msg = ref('')
+const price = ref("10")
+const mailid =ref('admin@foo.com')
+
+</script>
+<template>
+    <div>
+        <!-- <input v-model="msg" /> Input event -->
+        
+        <!-- Fire Change Event : once if the textbox looses its focus -->
+        <label for="Name">Name</label>
+        <input id="Name" v-model.lazy="msg" /> 
+
+    </div>
+        <div>
+        
+        <label for="Price">Price</label>
+        <input id="Price" v-model.number="price" /> 
+
+    </div>
+      <div>
+        
+        <label for="mailId">mailId</label>
+        <input id="mailId" v-model.trim="mailid" /> 
+
+    </div>
+    <div>
+        <h1>{{ msg }}</h1>
+        <h1>Price {{price}} Total Price {{price * 2}}</h1>
+        <h1>{{mailid}}</h1>
+    </div>
+</template>
+....................................................................................
+		Form Submission and How to prevent default events
+......................................................................................
+
+In java script, when you submit form, automatically there is event is fired , which is called "onSubmit" event.
+
+onSubmit event by default looks the server url to be posted.
+      <form action="http://www.google.com">
+          <button>Submit</button>
+      </form>
+
+Here , the button tries to redirecto url mentioned in the action property.
+
+I need to control, the form submission manually.
+
+Event Object :
+
+has api called "preventDefault()" , which does not trigger auto form submission.
+
+
+<script setup>
+
+const onSubmit = event => {
+    if (event) {
+        event.preventDefault();
+    }
+}
+
+</script>
+<template>
+    <div>
+        <form action="http://www.google.com">
+            <button @click="onSubmit">Submit</button>
+        </form>
+    </div>
+</template>
+
+Vue has some short cuts, instead of giving this inside listener, we can give inside templates.
+
+Event Modifiers:
+...............
+
+Event Modifiers are used with v-on
+
+<form @submit.prevent="onSubmit">
+<script setup>
+
+const onSubmit = event => {
+    alert('Form to be Submitted')
+}
+
+</script>
+<template>
+    <div>
+        <form @submit.prevent="onSubmit">
+            <button>Submit</button>
+        </form>
+    </div>
+</template>
+
+Other event modifiers
+
+//event propagation to be stopped
+<a @click.stop="listner">
+
+I want to submit form when key board events
+
+<input @keyup.enter="onSubmit">
+
+other keyboard keys modifiers
+
+.enter
+.tab
+.left
+.right
+.space
+.down
+.up
+
+.ctrl
+.alt
+.shift
+.meta
+.enter
+.....................................................................................
+.....................................................................................
+				Custom Directives
+.....................................................................................
+
+Code Reuse in Vue:
+
+The application code can be reused in vue in various ways.
+
+1.Composables
+   Way to reuse app state logic
+2.Components
+   Way to resue UI 
+3.Directives 
+   Way to resue underlaying dom features
+
+There are different types of directives 
+
+1.built in directives
+   Directives are provided by vue - v-on,v-bind....
+2.custom directives
+
+
+How to create simple custom Directive?
+
+Directive is object, having low level dom features.
+
+Steps:
+
+1.create directive object
+<script setup>
+//first directive
+const vFocus = {
+    //define life cycle methods
+    mounted: (element) => {
+        //we can get dom element here, what ever you want you can do
+        console.log(element)
+        element.focus()
+    }
+}
+</script>
+
+2.attach directive on html element.
+<template>
+    <input v-focus>
+</template>
+
+
+
+
+eg:
+<script setup>
+//high light directive
+const vHightlight = {
+    //define life cycle methods
+    mounted: (element) => {
+        //add event listener
+        element.addEventListener('mousemove', (evt) => {
+            //element.style.backgroundColor = 'yellow'
+            highLight('yellow')
+        })
+        //remove style
+        element.addEventListener('mouseleave', (evt) => {
+            // element.style.backgroundColor = null
+            highLight(null)
+        })
+        const highLight = (color) => {
+            element.style.backgroundColor = color
+        }
+    }
+
+
+}
+</script>
+<template>
+    <h1 v-hightlight>HighLight</h1>
+
+</template>
+
+
+Directive Hooks:
+  Directive hooks are methods which are called in every life cycle of directive
+
+created(element,binding,vnode,prevNode)
+
+beforeMount () - called before the target element is inserted into dom
+
+mounted() -> called before the parent component is updated
+
+beforeUpdate()- called after the parent component and all of its childern have updated
+
+update() -called after beforeUpdate
+
+beforeUnmount() - before removing element
+
+unmounted()  - when component is unmounted.
+....................................................................................
+			 Global Directives
+.....................................................................................
+
+Directives are created as part of Application object
+
+import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App)
+    .provide('company', 'google')
+    .directive('focus', (element, binding) => {
+        console.log('directive => ', element)
+        element.focus()
+    })
+    .directive('highlight', (element, binding) => {
+        element.addEventListener('mousemove', (evt) => {
+            //element.style.backgroundColor = 'yellow'
+            highLight('yellow')
+        })
+        //remove style
+        element.addEventListener('mouseleave', (evt) => {
+            // element.style.backgroundColor = null
+            highLight(null)
+        })
+        const highLight = (color) => {
+            element.style.backgroundColor = color
+        }
+    })
+    .mount('#app')
+
+App.vue
+<script setup>
+
+</script>
+<template>
+    <input v-focus />
+    <h1 v-highlight>Highlight</h1>
+</template>
+
+How to pass parameter to directive?
+
+<input v-bind:value="msg">
+                      |
+		    Parameter				
+  
+import { createApp } from 'vue'
+import App from './App.vue'
+
+createApp(App)
+    .provide('company', 'google')
+    .directive('focus', (element, binding) => {
+        console.log('directive => ', element)
+        element.focus()
+    })
+    .directive('highlight', (element, binding) => {
+      
+        //set inital color:
+        element.style.backgroundColor = binding.value
+        element.addEventListener('mousemove', (evt) => {
+            //element.style.backgroundColor = 'yellow'
+            highLight('yellow')
+        })
+        //remove style
+        element.addEventListener('mouseleave', (evt) => {
+            // element.style.backgroundColor = null
+            highLight(null)
+        })
+        const highLight = (color) => {
+            element.style.backgroundColor = color
+        }
+    })
+    .mount('#app')
+
+.....
+another eg:
+<script setup>
+import { ref } from 'vue'
+const color = ref('green')
+</script>
+<template>
+    <h1 v-highlight.value="color">HighLight</h1>
+    <!-- directive:arg.modifier -->
+    <h1 v-highlight:foo.bar="color">HighLight</h1>
+
+    <p v-demo>this is demo directive -simple</p>
+    <p v-demo:foo>this is demo directive-arg</p>
+    <p v-demo:foo.bar>this is demo directive-modifier</p>
+    <p v-demo:foo.bar="color">this is demo directive</p>
+    <p v-demo:foo.bar="{ color: 'green', label: 'Greetings' }">this is demo 
+    
+    directive</p>
+    <p v-demo:value="color">this is demo directive-arg</p>
+    <p v-demo="color">this is demo directive-arg</p>
+
+</template>
+import { createApp } from 'vue'
+import App from './App.vue'
+import StatusBar from './components/StatusBar.vue'
+
+// import './assets/main.css'
+
+// createApp(App).mount('#app')
+const app = createApp(App)
+//global Component
+app.component('StatusBar', StatusBar)
+//global data 
+app.provide('company', 'google')
+
+//global directives
+app.directive('highlight', (element, binding) => {
+    //console.log('element', element)
+    //console.log('binding', binding)
+
+    //get parameters supplied as part of directive
+    console.log(binding)
+    console.log('value', binding.value)
+
+    element.addEventListener('mousemove', (evt) => {
+        //element.style.backgroundColor = 'yellow'
+        highLight('pink')
+    })
+    //remove style
+    element.addEventListener('mouseleave', (evt) => {
+        // element.style.backgroundColor = null
+        highLight(null)
+    })
+    const highLight = (color) => {
+        element.style.backgroundColor = color
+    }
+    highLight(binding.value)
+
+})
+app.directive('demo', (element, binding) => {
+    console.log('element => ', element)
+    console.log('binding => ', binding)
+})
+
+
+app.mount('#app')
+		....................................................................................
+			   Plugins
+....................................................................................
+What is plugin?
+
+ Plugins are self contained code that usuallay add app-top level functionality to Vue.
+Most of third party libs are integrated as plugin with vue echo system eg: Vue-router
+Statement management libs like vuex,Pinia.
+
+Plugins are distribtued as npm modules, in order to use plugins, we have to do two things
+
+1.install plugin as npm moudle
+
+ npm install vue-router@4
+
+2.Integrate with Application object
+
+const app =createApp(App)
+
+//directives
+app.directive('demo',{})
+//components
+app.components('component',{})
+
+//plugins
+app.use(myPlugin)
+app.use(router)
+
+app.mount("#app");
+
+....................................................................................
+How to write plugins?
+
+Step 1:
+
+src/plugins/myPlugin.js
+//UpperCase  plugin
+export const myPlugin = {
+    install(app, options) {
+        //configure application
+        //plugin logic: plugin reads data 
+        app.config.globalProperties.$uppercase = key => {
+            return key.toUpperCase();
+        }
+    }
+};
+
+Step 2 :
+Register plugin in app object
+
+import { createApp } from 'vue'
+import App from './App.vue'
+import { myPlugin } from './plugins/myplugin'
+
+createApp(App)
+    .use(myPlugin)
+    .mount('#app')
+
+
+Step 3: 
+Use Plugin functionality inside app
+
+<script setup>
+</script>
+<template>
+  <h1>{{$uppercase('hello,how are you')}}</h1>
+</template>
+.....................................................................................
+			Life cycle hooks
+....................................................................................
+
+Each vue component instance goes through a series of initalization steps when its created.
+Common tasks:
+1.It needs to setup data observation
+2.Compile the template
+3.mount the instance to the dom
+4.update the dom when data chanages
+
+
+All life cycles hooks begin with "on+LifeCycle" 
+All life cycle method takes parameter which is "callback" function
+
+onMounted(function(){})
+
+Commonly used life cycles
+
+onMounted 
+onUpdated
+onUnMounted
+
+onMounted:
+  It is called after component been inserted into dom.
+
+Use of this lifecycle:
+1.Performing side effects
+   like : ajax calls,timers,websocket calls....
+          dom mutation.
+
+
+   
+<script setup>
+import { onBeforeMount, onBeforeUnmount, onBeforeUpdate, onMounted, onUnmounted, onUpdated, ref } from 'vue';
+
+const count = ref(10)
+
+const update = () => {
+    count.value++
+}
+
+//Mount and Unmount
+onBeforeMount(() => {
+    console.log('Before Mount')
+})
+onMounted(() => {
+    console.log('on Mounted')
+    //timer : async task
+    setTimeout(() => {
+        count.value++
+    }, 5000)
+    //inital ajax calls
+
+    //inital websocket calls
+    
+})
+onUnmounted(() => {
+    console.log('on Un Mounted')
+})
+onBeforeUnmount(() => {
+    console.log('Before UnMount')
+})
+
+//update cycle
+onBeforeUpdate(() => {
+    console.log('Before Update')
+})
+onUpdated(() => {
+    console.log('After Update')
+})
+
+</script>
+<template>
+    <h1>Life Cycle hooks {{ count }}</h1>
+    <button @click="update">Update</button>
+</template>
+.....................................................................................
+				CSS integration
+..................................................................................
+
+Vue integrates css globally and also component specific.
+
+Globall css :
+ main.js
+
+
+Component specific css:
+
+<script setup>
+</script>
+<template>
+    <div>
+        <h1 class="header">Hello</h1>
+    </div>
+</template>
+<style>
+.header {
+    color: blue;
+}
+</style>
+
+...
+scoped:
+<script setup>
+</script>
+<template>
+    <div>
+        <h1 class="header">Hello</h1>
+    </div>
+</template>
+<style scoped>
+.header {
+    color: blue;
+}
+</style>
+
+with scoped
+<style scoped>
+h1 {
+    color: blue
+}
+</style>
+
+output:
+<h1 data-v-1c354f03="">7 - Details</h1>
+
+with out scoped
+<style>
+h1 {
+    color: blue
+}
+</style>
+<h1>7 - Details</h1>
+
+The scoped attribute is very useful , this attaches a unique HTML 5 data attribute
+selector to all of your styles, preventing them from colliding globally.
+
+scoped attribute it apply to css only to the current component.
+This is similar to the style encasulation found the Shadow DOM.
+.....................................................................................
+
+Child components and scoped attribute:
+.....................................
+With scoped, the parent component styles will not lead into the child components.
+.....................................................................................
+			 Dynamic styles: class and style binding
+.....................................................................................
+
+<div :class="{active:isActive}">
+
+here active class is added when isActive variable is true
+
+<script setup>
+import { onMounted, reactive, ref } from 'vue';
+
+const isActive = ref(true)
+const sytleobj = reactive({ active: isActive, text: isActive })
+
+const toggle = () => {
+    isActive.value = !isActive.value
+    console.log(isActive.value)
+}
+</script>
+<template>
+    <!-- <div @click="toggle" :class="{ active: isActive ,text:isActive }">
+        <h1>Hello</h1>
+    </div> -->
+    <div @click="toggle" :class="sytleobj">
+        <h1>Hello</h1>
+    </div>
+</template>
+<style scoped>
+.active {
+    background-color: aqua;
+}
+
+.text {
+    font-size: small
+}
+</style>
+
+
+inline styles:
+..............
+
+<script setup>
+import { onMounted, reactive, ref } from 'vue';
+const sytleobj = reactive({ active: isActive, text: isActive })
+
+//inline style
+const activecolor = ref('red')
+const fontSize = ref(30)
+
+
+const update = () => {
+    activecolor.value = 'yellow'
+    fontSize.value = 50
+}
+</script>
+<template>
+    <div :style="{ color: activecolor, fontSize: fontSize + 'px' }">
+        <h1>Hai</h1>
+    </div>
+    <button @click="update">Update Style </button>
+</template>
+<style scoped>
+.active {
+    background-color: aqua;
+}
+
+.text {
+    font-size: small
+}
+</style>
+
+
+
+.....................................................................................
+			  Template Ref
+....................................................................................
+
+How to access dom element in Angular?
+ Inside component : event object
+ Inside Template  : template reference variable "#"
+ Inside directive : HostElement Object
+
+How to access dom element in React?
+ Inside component : event object
+ Inside jsx : ref keyword - 
+
+
+How to access dom element in Vue?
+ Inside component : event object
+ Inside Template  : ref keyword.
+
+syntax:
+ <input ref="variable">
+
+ref is attribute is used to access dom element or child component instance after it is mounted.
+
+ref ,can be used inside "onMounted" life cycle api.
+
+Use cases:
+1.in order to access dom elements directly
+2.in order to integrate third party libs.
+
+<script setup>
+import { onMounted, ref } from 'vue';
+import Greeter from './components/Greeter.vue';
+
+const myinput = ref(null)
+const greeter = ref(null)
+
+onMounted(() => {
+    console.log(myinput)
+    myinput.value.focus()
+    console.log(greeter.value)
+})
+</script>
+<template>
+    <input ref="myinput" value="test" />
+    <Greeter ref="greeter" />
+</template>
+.....................................................................................
+				Async components
+.....................................................................................
+ 
+Components are loaded sync in general.
+
+When you build app, app is collection of components, components are packed as js file.
+i want to separate the components into smallar and smallar bundles, and those bundles are loaded onfly , on demand.
+
+Async components are loaded as a separate bundle, on demand.
+
+There is a funnction called 
+
+defineAsyncComponent(function(){
+    return Promise((resolve,reject)=>{
+	resolve(loadcomponent)
+    })
+})
+
+defineAsyncComponent(function(){
+    import('./components/MyComponent.vue")
+})
+
+eg;
+<script setup>
+import { defineAsyncComponent } from 'vue';
+import Greeter from './components/Greeter.vue';
+
+//load component
+const GreeterAsync = defineAsyncComponent(() => import('./components/Greeter.vue'))
+</script>
+<template>
+    <GreeterAsync/>
+</template>
+<style>
+</style>
+
+What if the component is not loaded? 
+
+Due to some errors , the component is not loaded how to handle such errors.
+
+<script setup>
+import { defineAsyncComponent } from 'vue';
+import Greeter from './components/Greeter.vue';
+import ErrorComponent from './components/ErrorComponent.vue'
+
+//load component
+// const GreeterAsync = defineAsyncComponent(() => import('./components/Greeter.vue'))
+const GreeterAsync = defineAsyncComponent({
+    loader: () => import('./components/Greeter.vue'),
+    loadingComponent: Greeter,
+    errorComponent: ErrorComponent,
+    delay: 5000,
+    timeout: 10000
+})
+</script>
+<template>
+    <GreeterAsync />
+</template>
+<style>
+</style>
+
+....................................................................................
+			How to simulate the component delay loading
+
+....................................................................................
+			Async Components With Suspense
+.................................................................................
+
+Async components are not loaded up front, rather which is loaded as chunk(small bundle), when ever it is necessary.
+
+const component = defineAsyncComponent(()=>{
+   import('./components/MyComponent.vue')
+})
+
+<script setup>
+import { defineAsyncComponent } from 'vue';
+
+const HelloWorld = defineAsyncComponent(() => import('./components/HelloWorld.vue'))
+
+</script>
+<template>
+    <HelloWorld />
+</template>
+
+.........................
+
+HelloWorld.vue
+<script setup>
+defineProps({
+  msg: {
+    type: String,
+    required: true
+  }
+})
+function delay() {
+  return new Promise((resolve, rejec) => {
+    setTimeout(resolve, 10000, 'I delay the process')
+  })
+}
+const output = await delay()
+
+</script>
+
+<template>
+  <div class="greetings">
+    <h1 class="green">{{ msg }} {{output}}</h1>
+    <h3>
+      You’ve successfully created a project with
+      <a target="_blank" href="https://vitejs.dev/">Vite</a> +
+      <a target="_blank" href="https://vuejs.org/">Vue 3</a>.
+    </h3>
+  </div>
+</template>
+
+<style scoped>
+h1 {
+  font-weight: 500;
+  font-size: 2.6rem;
+  top: -10px;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+.greetings h1,
+.greetings h3 {
+  text-align: center;
+}
+
+@media (min-width: 1024px) {
+
+  .greetings h1,
+  .greetings h3 {
+    text-align: left;
+  }
+}
+</style>
+...
+
+<script setup>
+import { defineAsyncComponent, Suspense } from 'vue';
+
+const HelloWorld = defineAsyncComponent(() => import('./components/HelloWorld.vue'))
+
+const message = 'Hello Async component'
+</script>
+<template>
+    <Suspense>
+        <HelloWorld :msg="message" />
+        <!-- This is fallback component when component takes more time to load -->
+        <template #fallback>
+            <h1>Loading...</h1>
+        </template>
+    </Suspense>
+</template>
+...................................................................................
+.....................................................................................
+			   Animations
+.....................................................................................
+
+vue Provides two implmentation for animation
+
+1.Transition -  Built in component
+2.TransitionGroup - Built in component 
+
+For Animations
+
+Stages:
+
+1.if user enters / leaves into the screen.
+
+In General animtations are implemented behind the scene using "CSS 3 advanced classes"
+
+Vue offers built in css based component for implementing basic animation features.
+
+<script setup>
+import { ref } from 'vue';
+
+const show = ref(true)
+
+</script>
+<template>
+    <button @click="show = !show">Toggle</button>
+    <Transition name="fade">
+        <p v-if="show">
+            Hey , How are you?
+        </p>
+    </Transition>
+</template>
+<style>
+/* Transition styles */
+.v-enter-active,
+.v-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.v-enter-from,
+.v-leave-to {
+    opacity: 0;
+}
+</style>
+
+...................
+
+<script setup>
+import { ref } from 'vue'
+const show = ref(true)
+</script>
+
+<template>
+	<button @click="show = !show">Toggle</button>
+  <Transition name="slide-fade">
+    <p v-if="show">hello</p>
+  </Transition>
+</template>
+
+<style>
+.slide-fade-enter-active {
+  transition: all 0.3s ease-out;
+}
+
+.slide-fade-leave-active {
+  transition: all 0.8s cubic-bezier(1, 0.5, 0.8, 1);
+}
+
+.slide-fade-enter-from,
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+</style>
+.....................................................................................
+			 SPA
+...................................................................................
+
+...................................................................................
+			How to build SPA :Routing
+....................................................................................
+
+SPA is type of web application built for browsers, all navagations are done by javascript  , html only.
+
+SPA is called client routing.
+
+SPA core features:
+
+1.all navagation is controlled inside browser only
+2.From the server we get only data via apis as json format
+3.In spa, only we have one physical page called landing page /home page
+4.Name of the landing page would be "index.html"
+5.Rest of application page are called "virtual pages" which are created by js  dynamically we call "components"
+6.navigation is controlled by javascript objects called "location and histroy objects"
+7.Frameworks for routing is built on the top of these objects only.
+8.in order to build routing we need "HTML 5" 
+
+
+Routing can be implemented using plain js,html5,ajax,css3 itself, but in large scale we need framework, Vue supports official "vue router" which is supplied as "plugin"
+
+
+
+Router implementation without Router lib:
+
+<script setup>
+import HelloWorld from './components/HelloWorld.vue';
+import Home from './components/Home.vue'
+import { ref, computed } from 'vue'
+//route config
+const routes = {
+  '/': Home,
+  '/hello': HelloWorld
+}
+//Access path
+const currentPath = ref(window.location.hash)
+
+//track path changes
+window.addEventListener('hashchange', () => {
+  currentPath.value = window.location.hash
+})
+//current view
+const currentView = computed(() => {
+  return routes[currentPath.value.slice(1) || '/']
+})
+
+</script>
+<template>
+  <!-- Navigation links -->
+  <div>
+    <ul>
+      <li>
+        <a href="#/">Home</a>
+      </li>
+      <li>
+        <a href="#/hello">Hello</a>
+      </li>
+    </ul>
+    <component :is="currentView" />
+  </div>
+</template>
+
+
+http://localhost:3000/#/
+
+
+Vue offers official vue router lib, using that lib how to build spa application?
+
+
+There are two ways to add router to vue app
+
+For existing vue app
+npm install vue-router@4
+
+for app which begins new project
+
+Web Application url pattern:
+
+1.static url
+ http://www.example.com/products.html / products.pdf
+2.dynamic web url
+ http://www.example.com/products.do /products.jsp | products.aspx | products.php
+3.Web service url - REST Api
+ http://www.example.com/api/products =>json
+4.SPA Web url
+
+
+SPA URL Patterns:
+................
+1.web url - looks like web service url
+   http://www.example.com/hello /products
+2.hash url pattern-  
+http://www.example.com/index.html#hello |#products
+
+Steps:
+
+router/index.js
+
+import Home from '../components/Home.vue'
+import HelloWorld from '../components/HelloWorld.vue';
+import { createRouter, createWebHistory } from 'vue-router'
+
+
+//route configuration
+const routes = [
+    {
+        path: '/',
+        component: Home
+    },
+    {
+        path: '/hello',
+        component: HelloWorld
+    }
+]
+//create router object
+const router = createRouter({
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes
+})
+
+export default router;
+
+2.main.js
+import { createApp } from 'vue'
+import App from './App.vue'
+import router from './router'
+
+createApp(App)
+    .use(router)
+    .mount('#app')
+
+
+3.App.vue
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+</script>
+<template>
+    <div>
+        <!-- Menu Bar -->
+        <nav>
+            <RouterLink to="/">Home</RouterLink>
+            <RouterLink to="/hello">Hello</RouterLink>
+        </nav>
+        <!-- Place Holder to display view based on route change -->
+        <RouterView></RouterView>
+    </div>
+</template>
+....................................................................................
+
+URL patterns:
+
+static url
+ '/hello'
+dynamic url
+ '/greet/:message'
+
+Dynamic Route parameter like message variable if you want to read inside component.
+
+if you are in old vue , there is object this.$route
+
+if you are in vue 3, composition api, with setup attribute/ function, we have  composobale apis
+
+useRouter
+useRoute - exposes all url related apis , like reading parameters
+
+"$route and $router are built in objects which can be still used inside template without using useRouter and useRoute api"
+
+
+components/Greeter.vue
+
+<script setup>
+import { watch,ref } from 'vue';
+import { useRoute } from 'vue-router';
+//Composable api to read params,query
+const route = useRoute()
+
+
+</script>
+<template>
+    <h1>{{ route.params.message }}</h1>
+    <!-- Directly you can access route information inside template -->
+    <h1>{{ $route.params.message }}</h1>
+
+</template>
+
+router/index.js
+import Greeter from '../components/Greeter.vue'
+import { createRouter, createWebHistory } from 'vue-router'
+
+
+//route configuration
+const routes = [
+   {
+        path: '/greet/:message',
+        component: Greeter
+    }
+]
+//create router object
+const router = createRouter({
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes
+})
+
+export default router;
+....................................................................................
+
+Not Found:
+if any url match is statisfied, we need to map to certain url
+
+  {
+        path: '/:pathMatch(.*)*',
+        name:'NotFound',
+        component: NotFound
+    }
+...................................................................................
+			   path match expression
+
+Vue router inspired from "express" js routing model
+
+static
+/users
+dynamic
+
+/users/:id
+
+Rules : regular expressions
+
+//order id must be number
+/orders/:orderId(\\+d) 
+
+/orders/:orderId? - optional parameter
+
+Valid url patterns
+/orders 
+/orders/1
+
+...................................................................................
+			Nested routing
+...................................................................................
+
+user
+ |
+ profile
+ post
+ comments
+
+/user/ram/profile
+/user/ram/posts
+/user/ram/comments
+
+
+import Home from '../components/Home.vue'
+import Greeter from '../components/Greeter.vue'
+import NotFound from '../components/NotFound.vue'
+import HelloWorld from '../components/HelloWorld.vue';
+import User from '../components/User.vue'
+import UserProfile from '../components/UserProfile.vue'
+import UserPost from '../components/UserPost.vue'
+
+import { createRouter, createWebHistory } from 'vue-router'
+
+
+//route configuration
+const routes = [
+    {
+        path: '/',
+        component: Home
+    }
+    {
+        path: '/user/:name',
+        component: User,
+        //nested routing
+        children: [
+            {
+                path: 'profile',
+                component: UserProfile
+            },
+            {
+                path: 'posts',
+                component: UserPost
+            }
+        ]
+    },
+    //will match everything and put under
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: NotFound
+    }
+
+]
+//create router object
+const router = createRouter({
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes
+})
+
+export default router;
+
+
+App.vue
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+</script>
+<template>
+    <div>
+        <!-- Menu Bar -->
+        <nav>
+            <RouterLink to="/">Home</RouterLink>
+            <RouterLink to="/hello">Hello</RouterLink>
+            <RouterLink to="/user/ram">User</RouterLink>
+
+        </nav>
+        <!-- Place Holder to display view based on route change -->
+        <RouterView></RouterView>
+    </div>
+</template>
+
+User.vue
+<script setup>
+import { RouterLink, RouterView } from 'vue-router'
+
+</script>
+<template>
+    <h1>User</h1>
+    <h1>{{ $route.params.name }} {{$route.path}} {{$route.fullPath}}</h1>
+    <nav>
+        <RouterLink to="/user/ram/profile">Profile</RouterLink>
+        <RouterLink to="/user/ram/posts">Posts</RouterLink>
+    </nav>
+    <!-- Nested View -->
+    <RouterView></RouterView>
+</template>
+.....................................................................................
+			   Programmetic Navigation
+.....................................................................................
+
+Declarative routing is implemneted via "router-link", Programmetic routing is implemented via "Router" Object
+
+Declarative:
+<router-link to="profile">
+
+Programmetic Routing
+const router = useRouter()
+
+router.push('url')
+router.push({path:'url'})
+
+  /greeter/foo => /greeter/:name
+router.push({path:'url',params:{name:'foo'}})
+
+//with query string
+ /users?order='asc'
+router.push({path:'url',query:{order:'asc'}})
+
+eg:
+
+List.vue
+<script setup>
+import { useRouter, useRoute } from 'vue-router';
+
+const router = useRouter()
+console.log(router)
+
+const goToPage = () => {
+    //redirect to HelloWorld Page
+    router.push({ path: 'hello' })
+}
+</script>
+<template>
+    <button @click="goToPage">Go to HelloWorld</button>
+    <button @click="$router.back">Back</button>
+
+</template>
+
+import Home from '../components/Home.vue'
+import Greeter from '../components/Greeter.vue'
+import NotFound from '../components/NotFound.vue'
+import HelloWorld from '../components/HelloWorld.vue';
+import User from '../components/User.vue'
+import UserProfile from '../components/UserProfile.vue'
+import UserPost from '../components/UserPost.vue'
+import List from '../components/List.vue'
+
+import { createRouter, createWebHistory } from 'vue-router'
+
+router/index.js
+
+//route configuration
+const routes = [
+    {
+        path: '/',
+        component: Home
+    },
+    {
+        path: '/hello',
+        component: HelloWorld
+    },
+    {
+        path: '/greet/:message',
+        component: Greeter
+    },
+    {
+        path: '/list',
+        component: List
+    },
+    {
+        path: '/user/:name',
+        component: User,
+        //nested routing
+        children: [
+            {
+                path: '/',
+                component: UserProfile
+            },
+            {
+                path: 'profile',
+                component: UserProfile
+            },
+            {
+                path: 'posts',
+                component: UserPost
+            }
+        ]
+    },
+    //will match everything and put under
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: NotFound
+    }
+
+]
+//create router object
+const router = createRouter({
+    history: createWebHistory(import.meta.env.BASE_URL),
+    routes
+})
+
+export default router;
+....................................................................................
+
+
+
+
+		
